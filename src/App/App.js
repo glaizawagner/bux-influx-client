@@ -2,56 +2,74 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import config from '../config';
 import BuxInfluxContext from '../BuxInfluxContext';
-import AddBuxInflux from '../AddBuxInflux/AddBuxInflux';
+import AddIncomeExpense from '../AddIncomeExpense/AddIncomeExpense';
 import BudgetFilter from '../BudgetFilter/BudgetFilter';
+import Balance from '../Balance/Balance';
+import ExpenseList from '../ExpenseList/ExpenseList';
 
 export class App extends Component {
     state = {
-        buxinfluxs: [],
+        income: [],
+        expenses: [],
     };
 
-    setBuxinfluxs = buxinfluxs => {
+    setIncome = income => {
         this.setState({
-            buxinfluxs,
+            income,
         })
     }
 
-    handleAddBuxInflux = buxinflux => {
+    handleAddIncome = inc => {
         this.setState({
             income: [
-                ...this.state.buxinfluxs,
-                buxinflux
+                ...this.state.income,
+                inc
             ]
         })
     }
 
-    handleDeleteBuxInflux = buxinfluxid => {
-        const newBuxinflux = this.setState.buxinfluxs.filter(bi => 
-            bi.id !== buxinfluxid  
-        )
+    handleAddExpenses = exp => {
         this.setState({
-            buxinfluxs: newBuxinflux
+            income: [
+                ...this.state.expenses,
+                exp
+            ]
+        })
+    }
+
+    handleDeleteIncome = i_id => {
+        this.setState({
+            income: this.state.income.filter(inc => inc.iid !== i_id)
+        })
+    }
+
+
+    handleDeleteExpenses = e_id => {
+        this.setState({
+            expenses: this.state.income.filter(exp => exp.eid !== e_id)
         })
     }
 
     componentDidMount() {
-        // console.log(config.API_ENDPOINT);
-        fetch(config.API_ENDPOINT, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',    
-            }
-        })
-        .then( res => {
-            if(!res.ok) {
-                return res.json().then(error => Promise.reject(error))
-            }
-            return res.json()
+        // console.log(`Endpoints ${config.API_ENDPOINT}`);
+        Promise.all([
+            fetch(`${config.API_ENDPOINT}/income`),
+            fetch(`${config.API_ENDPOINT}/expenses`)
+        ])
+        .then(([incRes, expRes]) => {
+            if(!incRes.ok) 
+                return incRes.json().then(error => Promise.reject(error))
+            if(!expRes.ok)
+                return expRes.json().then(error => Promise.reject(error))
+            
+            return Promise.all([
+                incRes.json(),
+                expRes.json(),
+            ])
         }) 
         .then(([income, expenses]) => {
             this.setState({ income, expenses })
         })
-        .then(this.setBuxinfluxs)
         .catch(error => {
             console.error( { error })
         })
@@ -59,25 +77,43 @@ export class App extends Component {
 
     render() {
         const contextValue = {
-            buxinfluxs: this.state.buxinfluxs,
-            addBuxinflux: this.handleAddBuxInflux,
-            deleteBuxinfluxs: this.handleDeleteBuxInflux
+            income: this.state.income,
+            addIncome: this.handleAddIncome,
+            deleteIncome: this.handleDeleteIncome,
+            expenses: this.state.expenses,
+            addExpenses: this.handleAddExpenses,
+            deleteExpenses: this.handleDeleteExpenses,
         }
         return(
             <main className='App'>
                  <h1> Bux Influx</h1>
                  <BuxInfluxContext.Provider value={contextValue}>
                     <div className='content' aria-live='polite'>
-                        <Route
-                            exact
-                            path='/'
-                            component={BudgetFilter}
-                        />
-                        <Route
-                            exact
-                            path='/'
-                            component={AddBuxInflux}
-                        />
+                        <>
+                           
+
+                            <Route
+                                exact
+                                path='/'
+                                component={BudgetFilter}
+                            />
+                             <Route
+                                exact
+                                path='/'
+                                component={Balance}
+                            />
+                            <Route
+                                exact
+                                path='/'
+                                component={AddIncomeExpense}
+                            />
+
+                            <Route
+                                exact
+                                path='/'
+                                component={ExpenseList}
+                            />
+                        </>
                     </div>
                 </BuxInfluxContext.Provider> 
             </main>       

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import BuxInfluxContext from '../BuxInfluxContext';
 import config from '../config';
+import BudgetFilter from '../BudgetFilter/BudgetFilter';
 
-class AddBuxInflux extends Component {
+class AddIncomeExpense extends Component {
     static defaultProps = {
         history: {
             push: () => { }
@@ -17,8 +18,10 @@ class AddBuxInflux extends Component {
         const { date_created, type, description, value } = e.target;
         let endpoints;
 
-        const newBuxinflux = {
-            date: new Date(),
+        console.log(BudgetFilter.start)
+        
+        const newIncExp = {
+            date_created: BudgetFilter.start,
             type: type.value,
             description: description.value,
             value: value.value
@@ -27,15 +30,19 @@ class AddBuxInflux extends Component {
 
         if(type.value === '+') {
              endpoints = `${config.API_ENDPOINT}/income`
+            //  console.log(`For type: ${type.value}`)
+            //  console.log(`Income ${endpoints}`);
         } 
         if(type.value === '-') {
             endpoints = `${config.API_ENDPOINT}/expenses`
+            // console.log(`For type: ${type.value}`)
+            // console.log(`Expenses ${endpoints}`);
         }
-
-        console.log(`Endpoint ${endpoints}`)
-        fetch(`${endpoints}`, {
+        // console.log(`Endpoint ${config.API_ENDPOINT}`);
+        console.log(`Endpoint ${endpoints}`);
+        fetch(endpoints, {
             method: 'POST',
-            body: JSON.stringify(newBuxinflux),
+            body: JSON.stringify(newIncExp),
             headers: {
                 'content-type': 'application/json',
             }
@@ -51,7 +58,12 @@ class AddBuxInflux extends Component {
             type.value = ''
             description.value = ''
             value.value = ''
-            this.context.addBuxinflux(data)
+            if(type.value==='+')
+                console.log(this.context.addIncome)
+               this.context.addIncome(data)
+            if(type.value === '-')
+                console.log(this.context.addExpenses)
+                this.context.addExpenses(data)
             this.props.history.push('/')
         })
         .catch(error => {
@@ -67,8 +79,8 @@ class AddBuxInflux extends Component {
                     onSubmit={this.handleSubmit}
                 >
                     <select name='type'>
-                        <option value='inc'>+</option>
-                        <option value='exp'>-</option>
+                        <option value='+'>+</option>
+                        <option value='-'>-</option>
                     </select>
                     <input
                         type='description'
@@ -91,4 +103,4 @@ class AddBuxInflux extends Component {
     }
 }
 
-export default AddBuxInflux;
+export default AddIncomeExpense;
