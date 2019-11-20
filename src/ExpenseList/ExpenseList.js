@@ -11,19 +11,20 @@ export default class ExpenseList extends Component {
       
     render() {
         const { expenses } = this.context;
+        console.log(expenses);
         return(
             <section className='ExpenseList'>
-                <h2>Expense</h2>
+                <h2>Expenses</h2>
                 <ul className="ExpenseList__list" aria-live='polite'>
-                    {expenses.map(exp => 
+                    {expenses.map(expense => 
                         <ExpenseItem 
-                            key={exp.id} 
-                            {...exp} 
+                            key={expense.eid} 
+                            {...expense} 
                         />
                     )}
                 </ul>
             </section>    
-        )
+        );
     }
 }
 

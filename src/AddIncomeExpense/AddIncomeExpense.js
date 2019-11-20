@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import BuxInfluxContext from '../BuxInfluxContext';
 import config from '../config';
-import BudgetFilter from '../BudgetFilter/BudgetFilter';
 
 class AddIncomeExpense extends Component {
     static defaultProps = {
@@ -18,10 +17,12 @@ class AddIncomeExpense extends Component {
         const { date_created, type, description, value } = e.target;
         let endpoints;
 
-        console.log(BudgetFilter.start)
-        
+        console.log(this.props.created)
+        console.log(this.context.created)
+        console.log(`for date created ${date_created}`);
+
         const newIncExp = {
-            date_created: BudgetFilter.start,
+            date_created: this.context.created,
             type: type.value,
             description: description.value,
             value: value.value
@@ -39,7 +40,7 @@ class AddIncomeExpense extends Component {
             // console.log(`Expenses ${endpoints}`);
         }
         // console.log(`Endpoint ${config.API_ENDPOINT}`);
-        console.log(`Endpoint ${endpoints}`);
+        // console.log(`Endpoint ${endpoints}`);
         fetch(endpoints, {
             method: 'POST',
             body: JSON.stringify(newIncExp),
@@ -54,11 +55,10 @@ class AddIncomeExpense extends Component {
             return res.json()
         })
         .then( data => {
-            date_created.value = ''
             type.value = ''
             description.value = ''
             value.value = ''
-            if(type.value==='+')
+            if(type.value ==='+')
                 console.log(this.context.addIncome)
                this.context.addIncome(data)
             if(type.value === '-')

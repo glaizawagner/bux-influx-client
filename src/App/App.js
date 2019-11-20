@@ -6,6 +6,7 @@ import AddIncomeExpense from '../AddIncomeExpense/AddIncomeExpense';
 import BudgetFilter from '../BudgetFilter/BudgetFilter';
 import Balance from '../Balance/Balance';
 import ExpenseList from '../ExpenseList/ExpenseList';
+import IncomeList from '../IncomeList/IncomeList';
 
 export class App extends Component {
     state = {
@@ -75,6 +76,47 @@ export class App extends Component {
         })
     }
 
+    renderMainRoutes() {
+        return(
+            <>
+                <Route
+                    exact
+                    path='/'
+                    component={BudgetFilter}
+                />
+                <Route
+                    exact
+                    path='/'
+                    component={Balance}
+                />
+
+                <Route
+                    exact
+                    path='/'
+                    component={AddIncomeExpense}
+                />
+
+                {['/','/income/:iid'].map(path => 
+                    <Route
+                        key={path}
+                        path={path}
+                        component={IncomeList}
+                    />
+                )}
+
+                {['/','/expenses/:eid'].map(path => 
+                    <Route
+                        exact
+                        key={path}
+                        path={path}
+                        component={ExpenseList}
+                    />
+                )}
+                
+            </>
+        )   
+    }
+    
     render() {
         const contextValue = {
             income: this.state.income,
@@ -89,31 +131,7 @@ export class App extends Component {
                  <h1> Bux Influx</h1>
                  <BuxInfluxContext.Provider value={contextValue}>
                     <div className='content' aria-live='polite'>
-                        <>
-                           
-
-                            <Route
-                                exact
-                                path='/'
-                                component={BudgetFilter}
-                            />
-                             <Route
-                                exact
-                                path='/'
-                                component={Balance}
-                            />
-                            <Route
-                                exact
-                                path='/'
-                                component={AddIncomeExpense}
-                            />
-
-                            <Route
-                                exact
-                                path='/'
-                                component={ExpenseList}
-                            />
-                        </>
+                        {this.renderMainRoutes()}
                     </div>
                 </BuxInfluxContext.Provider> 
             </main>       
