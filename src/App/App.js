@@ -7,16 +7,28 @@ import BudgetFilter from '../BudgetFilter/BudgetFilter';
 import Balance from '../Balance/Balance';
 import ExpenseList from '../ExpenseList/ExpenseList';
 import IncomeList from '../IncomeList/IncomeList';
+import moment from 'moment';
 
 export class App extends Component {
-    state = {
-        income: [],
-        expenses: [],
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            income: [],
+            expenses: [],
+            created: moment(new Date()).format("YYYY-MM-DD")
+        };
+    }
+    
 
     setIncome = income => {
         this.setState({
             income,
+        })
+    }
+
+    setExpenses = expenses => {
+        this.setState({
+            expenses,
         })
     }
 
@@ -31,7 +43,7 @@ export class App extends Component {
 
     handleAddExpenses = exp => {
         this.setState({
-            income: [
+            expenses: [
                 ...this.state.expenses,
                 exp
             ]
@@ -47,7 +59,19 @@ export class App extends Component {
 
     handleDeleteExpenses = e_id => {
         this.setState({
-            expenses: this.state.income.filter(exp => exp.eid !== e_id)
+            expenses: this.state.expenses.filter(exp => exp.eid !== e_id)
+        })
+    }
+
+    handleDateChange = (value) => {
+        this.setState({
+            created: value
+        })
+    }
+
+    handleTotalChange = value => {
+        this.setState({
+            totalBalance: value
         })
     }
 
@@ -75,48 +99,7 @@ export class App extends Component {
             console.error( { error })
         })
     }
-
-    renderMainRoutes() {
-        return(
-            <>
-                <Route
-                    exact
-                    path='/'
-                    component={BudgetFilter}
-                />
-                <Route
-                    exact
-                    path='/'
-                    component={Balance}
-                />
-
-                <Route
-                    exact
-                    path='/'
-                    component={AddIncomeExpense}
-                />
-
-                {['/','/income/:iid'].map(path => 
-                    <Route
-                        key={path}
-                        path={path}
-                        component={IncomeList}
-                    />
-                )}
-
-                {['/','/expenses/:eid'].map(path => 
-                    <Route
-                        exact
-                        key={path}
-                        path={path}
-                        component={ExpenseList}
-                    />
-                )}
-                
-            </>
-        )   
-    }
-    
+   
     render() {
         const contextValue = {
             income: this.state.income,
@@ -125,14 +108,45 @@ export class App extends Component {
             expenses: this.state.expenses,
             addExpenses: this.handleAddExpenses,
             deleteExpenses: this.handleDeleteExpenses,
+            created: this.state.created,
+            onDateChange: this.handleDateChange
         }
+  
         return(
             <main className='App'>
                  <h1> Bux Influx</h1>
                  <BuxInfluxContext.Provider value={contextValue}>
                     <div className='content' aria-live='polite'>
-                        {this.renderMainRoutes()}
+                        <Route
+                        exact 
+                        path='/'
+                        component={BudgetFilter}
+                        />
+                        <Route
+                            exact
+                            path='/'
+                            component={Balance}
+                        />
+
+                        <Route
+                            exact
+                            path='/'
+                            component={AddIncomeExpense}
+                        />
+
+                        <Route
+                            exact
+                            path='/'
+                            component={IncomeList}
+                        />
+
+                        <Route
+                            exact
+                            path='/'
+                            component={ExpenseList}
+                            />
                     </div>
+
                 </BuxInfluxContext.Provider> 
             </main>       
         );

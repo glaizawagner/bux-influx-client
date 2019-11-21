@@ -12,7 +12,7 @@ export default class Balance extends Component {
 
     render() {
         const { income, expenses } = this.context;
-        console.log(income);
+        // console.log(income);
 
         let totalIncome = income.reduce((sum, item) => {
             // console.log(sum += parseFloat(item.value))
@@ -24,8 +24,8 @@ export default class Balance extends Component {
             return sum += parseFloat(item.value);
         },0); 
 
-        console.log(totalIncome);
-        console.log(totalExpenses);
+        // console.log(totalIncome);
+        // console.log(totalExpenses);
 
         let totalBalance = totalIncome - totalExpenses;
 

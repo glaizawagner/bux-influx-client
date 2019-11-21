@@ -5,7 +5,7 @@ import BuxInfluxContext from '../BuxInfluxContext';
 import config from '../config'
 
 function deleteIncomeRequest(iid, cb) {
-    fetch(config.API_ENDPOINT +`/{iid}`, {
+    fetch(config.API_ENDPOINT +`/income/${iid}`, {
         method: 'DELETE',
         headers: {
             'content-type': 'application/json',
@@ -19,6 +19,7 @@ function deleteIncomeRequest(iid, cb) {
             // return res.json()
         })
         .then(() => {
+            console.log(iid)
             cb(iid)
         })
         .catch(error => {

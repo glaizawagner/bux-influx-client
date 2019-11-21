@@ -1,39 +1,29 @@
+/* eslint-disable no-useless-constructor */
 /* eslint-disable react/require-render-return */
 import React, { Component } from 'react';
-// import BuxInfluxContext from '../BuxInfluxContext';
-import moment from 'moment';
+import BuxInfluxContext from '../BuxInfluxContext';
 
 class BudgetFilter extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            created: moment(new Date()).format("YYYY-MM-DD"),
-        }
-    }
-    // static contextType = BuxInfluxContext;
 
-    createdDate = dt => {
-        this.setState ({created: dt})
-    }
+    static contextType = BuxInfluxContext;
 
-    
     render() {
-        // console.log(this.state.created)
-        const created  = this.state.created;
-        console.log(created);
-        return (
-            <div className="BudgetFilter">
-                <label htmlFor="created">Available Budget in:</label>
-
-                <input type="date" id="created" name="created"
-                    value={created}
-                    min="2019/01/01" max="2019/12/31"
-                    onChange={ev => this.createdDate(ev.target.value)}
-                />
-    
-            </div>
-        );
+            return (
+                <>
+                    <BuxInfluxContext.Consumer> 
+                        {(context) => (
+                             <div className="BudgetFilter">
+                                <label htmlFor="created">Available Budget in:</label>
+                                <input type="date" id="created" name="created"
+                                        value={this.context.created}
+                                        onChange={ (e) => {this.context.onDateChange(e.target.value)} }/>
+                            </div>
+                        )}
+                    </BuxInfluxContext.Consumer>
+                </>
+            );
     }
+   
 }
 
 export default BudgetFilter;

@@ -5,7 +5,7 @@ import BuxInfluxContext from '../BuxInfluxContext';
 import config from '../config'
 
 function deleteExpenseRequest(eid, cb) {
-    fetch(config.API_ENDPOINT +`/{eid}`, {
+    fetch(config.API_ENDPOINT +`/expenses/${eid}`, {
         method: 'DELETE',
         headers: {
             'content-type': 'application/json',
@@ -19,6 +19,7 @@ function deleteExpenseRequest(eid, cb) {
             // return res.json()
         })
         .then(() => {
+            console.log(`For Eid: ${eid}`)
             cb(eid)
         })
         .catch(error => {

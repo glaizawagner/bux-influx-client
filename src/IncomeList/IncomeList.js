@@ -15,9 +15,10 @@ export default class IncomeList extends Component {
             <section className='IncomeList'>
                 <h2>Income</h2>
                 <ul className="IncomeList__list" aria-live='polite'>
-                    {income.map(income => 
+                    {income.map((income,i) => 
                         <IncomeItem 
-                            key={income.iid} 
+                            key={i} 
+                            iid={i}
                             {...income} 
                         />
                     )}
