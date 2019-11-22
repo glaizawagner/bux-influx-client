@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable react/require-render-return */
 import React, { Component } from 'react';
-import BuxInfluxContext from '../BuxInfluxContext';
+import BuxInfluxContext from '../../contexts/BuxInfluxContext';
 
 class BudgetFilter extends Component {
 

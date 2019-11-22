@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import config from '../config';
-import BuxInfluxContext from '../BuxInfluxContext';
-import AddIncomeExpense from '../AddIncomeExpense/AddIncomeExpense';
-import BudgetFilter from '../BudgetFilter/BudgetFilter';
-import Balance from '../Balance/Balance';
-import ExpenseList from '../ExpenseList/ExpenseList';
-import IncomeList from '../IncomeList/IncomeList';
+import { Route, Switch } from 'react-router-dom';
+import config from '../../config';
+// import PrivateRoute from '../../Utils/PrivateRoute';
+import PublicOnlyRoute from '../../Utils/PublicOnlyRoute';
+import BuxInfluxContext from '../../contexts/BuxInfluxContext';
+import AddIncomeExpense from '../../components/AddIncomeExpense/AddIncomeExpense';
+import BudgetFilter from '../../components/BudgetFilter/BudgetFilter';
+import Balance from '../../components/Balance/Balance';
+import ExpenseList from '../../components/ExpenseList/ExpenseList';
+import IncomeList from '../../components/IncomeList/IncomeList';
+import LoginPage from '../../routes/LoginPage/LoginPage'
 import moment from 'moment';
 
 export class App extends Component {
@@ -117,34 +120,42 @@ export class App extends Component {
                  <h1> Bux Influx</h1>
                  <BuxInfluxContext.Provider value={contextValue}>
                     <div className='content' aria-live='polite'>
-                        <Route
-                        exact 
-                        path='/'
-                        component={BudgetFilter}
-                        />
-                        <Route
-                            exact
-                            path='/'
-                            component={Balance}
-                        />
-
-                        <Route
-                            exact
-                            path='/'
-                            component={AddIncomeExpense}
-                        />
-
-                        <Route
-                            exact
-                            path='/'
-                            component={IncomeList}
-                        />
-
-                        <Route
-                            exact
-                            path='/'
-                            component={ExpenseList}
+                        <Switch>
+                            <Route
+                                exact 
+                                path='/'
+                                component={BudgetFilter}
                             />
+                            <Route
+                                exact
+                                path='/'
+                                component={Balance}
+                            />
+
+                            <Route
+                                exact
+                                path='/'
+                                component={AddIncomeExpense}
+                            />
+
+                            <Route
+                                exact
+                                path='/'
+                                component={IncomeList}
+                            />
+
+                            <Route
+                                exact
+                                path='/'
+                                component={ExpenseList}
+                            />
+
+                            <PublicOnlyRoute
+                                path={'/login'}
+                                component={LoginPage}
+                            />
+                            
+                        </Switch>
                     </div>
 
                 </BuxInfluxContext.Provider> 

@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react';
-import BuxInfluxContext from '../BuxInfluxContext';
+import BuxInfluxContext from '../../contexts/BuxInfluxContext';
 // import PropTypes from 'prop-types';
-import config from '../config'
+import config from '../../config'
 
-function deleteIncomeRequest(iid, cb) {
-    fetch(config.API_ENDPOINT +`/income/${iid}`, {
+function deleteExpenseRequest(eid, cb) {
+    fetch(config.API_ENDPOINT +`/expenses/${eid}`, {
         method: 'DELETE',
         headers: {
             'content-type': 'application/json',
@@ -19,30 +19,30 @@ function deleteIncomeRequest(iid, cb) {
             // return res.json()
         })
         .then(() => {
-            console.log(iid)
-            cb(iid)
+            console.log(`For Eid: ${eid}`)
+            cb(eid)
         })
         .catch(error => {
             console.error(error)
         })
 }
 
-export default function IncomeItem(props) {
+export default function ExpenseItem(props) {
     return(
         <BuxInfluxContext.Consumer>
             { (context) => (
-                <li className ='IncomeItem'>
-                    <div className = 'IncomeItem__row'>
+                <li className ='ExpenseItem'>
+                    <div className = 'ExpenseItem__row'>
                         <span> 
                             {props.date_created} 
                             {props.description} 
                             {props.value} 
                             <button 
-                                className='IncomeItem__btn'
+                                className='ExpenseItem__btn'
                                 onClick={() => {
-                                    deleteIncomeRequest(
-                                        props.iid,
-                                        context.deleteIncome
+                                    deleteExpenseRequest(
+                                        props.eid,
+                                        context.deleteExpenses
                                     )
                                 }}
                             >

@@ -1,37 +1,62 @@
 /* eslint-disable no-useless-constructor */
 import React, { Component } from 'react';
-import BuxInfluxContext from '../BuxInfluxContext';
-import config from '../config';
+import BuxInfluxContext from '../../contexts/BuxInfluxContext';
+import config from '../../config';
 
 class AddIncomeExpense extends Component {
-    constructor(props) {
-        super(props);
+    static defaultProps = {
+        income: [],
+        expenses: [],
+      }
+
+    state = {
+        totalPerc: 0,
     }
 
     static contextType = BuxInfluxContext;
 
+    // getPercentage = () => {
+    //     this.setState({
+    //         totalPerc: this.state.expenses.reduce( (sum, item) => (sum += parseFloat(item.value)) , 0 )
+    // });
+    // }
 
     handleSubmit = e => {
         e.preventDefault();
 
         const { type, description, value } = e.target;
-        let endpoints;
+        let endpoints, newIncExp ;
 
-        const newIncExp = {
+        // console.log (this.totalPerc);
+        // console.log(this.getPercentage(value));
+
+        const newInc = {
             date_created: this.context.created,
             type: type.value,
             description: description.value,
             value: value.value
         }
         
-        // console.log(type.value);
+
+        const newExp = {
+            date_created: this.context.created,
+            type: type.value,
+            description: description.value,
+            value: value.value,
+            // percentage: this.getPercentage(value)
+            percentage: this.totalPerc
+        }
+     
 
         if(type.value === 'inc') {
              endpoints = `${config.API_ENDPOINT}/income`
+             newIncExp = newInc;
              console.log(endpoints)
+
         } 
         if(type.value === 'exp') {
             endpoints = `${config.API_ENDPOINT}/expenses`
+            newIncExp = newExp;
             console.log(endpoints)
         }
         fetch(endpoints, {
@@ -72,6 +97,8 @@ class AddIncomeExpense extends Component {
     };
 
     render() {
+
+        
         return (
             
             <section className='AddBuxInflux'>

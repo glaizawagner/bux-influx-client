@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ExpenseItem from '../ExpenseItem/ExpenseItem';
-import BuxInfluxContext from  '../BuxInfluxContext'
+import ExpenseItem from '../../components/ExpenseItem/ExpenseItem';
+import BuxInfluxContext from  '../../contexts/BuxInfluxContext'
 
 export default class ExpenseList extends Component {
     static defaultProps = {
@@ -11,7 +11,6 @@ export default class ExpenseList extends Component {
       
     render() {
         const { expenses } = this.context;
-        // console.log(expenses);
         return(
             <section className='ExpenseList'>
                 <h2>Expenses</h2>

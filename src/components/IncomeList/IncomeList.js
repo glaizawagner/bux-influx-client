@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import IncomeItem from '../IncomeItem/IncomeItem';
-import BuxInfluxContext from  '../BuxInfluxContext'
+import IncomeItem from '../../components/IncomeItem/IncomeItem';
+import BuxInfluxContext from  '../../contexts/BuxInfluxContext'
 
 export default class IncomeList extends Component {
     static defaultProps = {
@@ -21,6 +21,9 @@ export default class IncomeList extends Component {
                             iid={i}
                             {...income} 
                         />
+                        // <EditIncomeItem 
+
+                        // />
                     )}
                 </ul>
             </section>    
