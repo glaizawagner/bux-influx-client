@@ -24,15 +24,15 @@ function formatNumber(num, type) {
 function displayPercentage(totalInc, totalExp, perc) {
     if(totalInc > 0 && totalExp > 0) {
         perc = Math.round((totalExp/totalInc) * 100)
-    }
+    } 
     if (totalExp > totalInc) {
         perc = '';
     }
-    else {
-        perc = '';
-    }
+    // else {
+    //     perc = '';
+    // }
 
-    return (perc)+(perc>0 ? '%':'---');
+    return (perc) + ( perc > 0 ? '%' : '---');
 }
 
 
