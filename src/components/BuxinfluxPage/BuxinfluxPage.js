@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import BuxinfluxContext from '../../contexts/BuxInfluxContext';
-import BuxinfluxApiService from '../../services/buxinflux-api-service';
+import BuxinfluxContext from '../../contexts/BuxinfluxContext';
+import BuxinfluxApiService from '../../services/buxinflux-api-service.js';
 import BudgetFilter from '../../components/BudgetFilter/BudgetFilter';
 import Balance from '../../components/Balance/Balance';
 import AddIncomeExpense from '../../components/AddIncomeExpense/AddIncomeExpense';
 import IncomeList from '../../components/IncomeList/IncomeList';
 import ExpenseList from '../../components/ExpenseList/ExpenseList';
-// import { Section } from '../../Utils/Utils'
-
 
 export default class BuxinfluxPage extends Component {
     static defaultProps = {
@@ -18,13 +16,18 @@ export default class BuxinfluxPage extends Component {
 
     componentDidMount() {
         const { iid, eid } = this.props.match.params;
-        this.context.clearError()
+        console.log(this.iid)
+        // this.context.clearError()
         BuxinfluxApiService.getIncome(iid)
+            // .then(console.log(`for set income`))
             .then(this.context.setIncome)
             .catch(this.context.setError)
+            // .catch('for set error')
         BuxinfluxApiService.getExpenses(eid)
+            // .then('for set expenses')
             .then(this.context.setExpenses)
             .catch(this.context.setError)
+            // .catch('for set error')
     }
 
     // componentWillMount() {
@@ -33,39 +36,50 @@ export default class BuxinfluxPage extends Component {
     // }
 
     render() {
-        // const { income, expenses } = this.context;
+        // const { created, income, expenses } = this.context;
         return (
             <>
-                <div className='BuxinfluxPage' />
-                <h2>Bux Inlux</h2>
+                <div className='BuxinfluxPage'>
+                    <h2>Bux Inlux</h2>
 
-                <BudgetFilter />
-                <Balance />
-                <AddIncomeExpense />
-                <IncomeList />
-                <ExpenseList />
+                    <BudgetFilter/>
+                    <Balance />
+                    <AddIncomeExpense />
+                    <IncomeList />
+                    <ExpenseList />
 
+                </div>
             </>
-        )
-            
-    // }
+        )      
+    }
     // render() {
-    // //     const {error, income, expenses } = this.context;
-    // //     let content
+    //     console.log('rendering bux influx page')
+    //     const { error, income, expenses } = this.context;
+    //     console.log(error)
+    //     let content
     //     if (error) {
     //       content = (error.error === `Buxinflux doesn't exist`)
     //         ? <p className='red'>Thing not found</p>
     //         : <p className='red'>There was an error</p>
-    //     } else if (!income.iid && !expenses.eid) {
+    //     } else if (!income.iid || !expenses.eid) {
     //       content = <div className='loading' />
     //     } else {
-    //       content = this.renderMain()
+    //       content = this.renderBuxInfluxPage()
     //     }
     //     return (
-    //       <Section className='BuxinfluxPage'>
+    //       <section className='BuxinfluxPage'>
     //         {content}
-    //       </Section>
+    //       </section>
     //     )
-    }
+    // }
 
 }
+
+// function IncomeList({ income = [] }) {
+//     return(
+//         <p className='BuxinfluxPage__content'>
+//             {income.content}
+//             {expenses.content}
+//         </p>
+//     )
+// }

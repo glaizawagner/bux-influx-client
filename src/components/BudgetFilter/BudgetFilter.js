@@ -1,16 +1,18 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable react/require-render-return */
 import React, { Component } from 'react';
-import BuxInfluxContext from '../../contexts/BuxInfluxContext';
+import BuxinfluxContext from '../../contexts/BuxinfluxContext';
 
 class BudgetFilter extends Component {
 
-    static contextType = BuxInfluxContext;
+    static contextType = BuxinfluxContext;
 
     render() {
+        
+        console.log(this.context.created);
             return (
                 <>
-                    <BuxInfluxContext.Consumer> 
+                    <BuxinfluxContext.Consumer> 
                         {(context) => (
                              <div className="BudgetFilter">
                                 <label htmlFor="created">Available Budget in:</label>
@@ -19,7 +21,7 @@ class BudgetFilter extends Component {
                                         onChange={ (e) => {this.context.onDateChange(e.target.value)} }/>
                             </div>
                         )}
-                    </BuxInfluxContext.Consumer>
+                    </BuxinfluxContext.Consumer>
                 </>
             );
     }

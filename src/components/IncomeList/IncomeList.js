@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
 import IncomeItem from '../../components/IncomeItem/IncomeItem';
-import BuxInfluxContext from  '../../contexts/BuxInfluxContext'
+import BuxinfluxContext from  '../../contexts/BuxinfluxContext'
+import helpers from '../../components/helpers/helpers';
 
 export default class IncomeList extends Component {
     static defaultProps = {
         income: []
       }
 
-    static contextType = BuxInfluxContext;
+    static contextType = BuxinfluxContext;
 
     render() {
-        const { income } = this.context;
+        const { created, income } = this.context;
         return(
             <section className='IncomeList'>
                 <h2>Income</h2>
                 <ul className="IncomeList__list" aria-live='polite'>
                     {income.map((income,i) => 
-                        <IncomeItem 
-                            key={i} 
-                            iid={i}
-                            {...income} 
-                        />
-                        // <EditIncomeItem 
-
-                        // />
+                        (helpers.formatDate(income.date_created) === helpers.formatDate(created)) 
+                        ? <IncomeItem key={i} iid={i} {...income} 
+                            toggleEditing={() => this.toggleIncomeEditing(i)}
+                            onChange={this.handleIncomeUpdate}
+                            /> 
+                        : ''
                     )}
                 </ul>
             </section>    
