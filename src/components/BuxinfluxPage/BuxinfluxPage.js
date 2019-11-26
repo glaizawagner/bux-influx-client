@@ -6,6 +6,7 @@ import Balance from '../../components/Balance/Balance';
 import AddIncomeExpense from '../../components/AddIncomeExpense/AddIncomeExpense';
 import IncomeList from '../../components/IncomeList/IncomeList';
 import ExpenseList from '../../components/ExpenseList/ExpenseList';
+import './BuxinfluxPage.css';
 
 export default class BuxinfluxPage extends Component {
     static defaultProps = {
@@ -39,16 +40,11 @@ export default class BuxinfluxPage extends Component {
         // const { created, income, expenses } = this.context;
         return (
             <>
-                <div className='BuxinfluxPage'>
-                    <h2>Bux Inlux</h2>
-
-                    <BudgetFilter/>
-                    <Balance />
-                    <AddIncomeExpense />
-                    <IncomeList />
-                    <ExpenseList />
-
-                </div>
+                <BudgetFilter/>
+                <Balance />
+                <AddIncomeExpense />
+                <IncomeList />
+                <ExpenseList />
             </>
         )      
     }

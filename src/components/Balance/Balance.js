@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import BuxinfluxContext from  '../../contexts/BuxinfluxContext'
 import helpers from '../../components/helpers/helpers'
-
+import './Balance.css';
 
 export default class Balance extends Component {
     static defaultProps = {
@@ -16,16 +16,20 @@ export default class Balance extends Component {
 
         return (
 
-            <div className="Balance">
-                <label htmlFor="start">{helpers.formatNumber(this.context.onChangeBalance())}</label>
+            <div className="forBalance">
+                <label htmlFor="start" className="start">{helpers.formatNumber(this.context.onChangeBalance())}</label>
 
-                <div className="BalanceIncome">
-                    Income  {helpers.formatNumber(this.context.onChangeIncome(),'inc')} 
+                <div id="BalanceIncome">
+                    Income
+                    <span className="totalInc">{helpers.formatNumber(this.context.onChangeIncome(),'inc')} </span>
                 </div>
 
-                <div className="BalanceExpense">
-                    Expenses {helpers.formatNumber(this.context.onChangeExpenses(),'exp')} 
-                    <span className="perc" id="perc">{helpers.formatPercentage(this.context.handleTotalPercentage())}</span>
+                <div id="BalanceExpense">
+                    Expenses
+                    <span className="totalExp">{helpers.formatNumber(this.context.onChangeExpenses(),'exp')} 
+                    <span className="perc" id="perc">{helpers.formatPercentage(this.context.handleTotalPercentage())}</span></span>
+                    
+                    {/* <span className="perc" id="perc"> */}
                 </div>
             </div>
         );

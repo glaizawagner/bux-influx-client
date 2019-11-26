@@ -5,7 +5,7 @@ import PrivateRoute from '../../components/Utils/PrivateRoute';
 import PublicOnlyRoute from '../../components/Utils/PublicOnlyRoute';
 import TokenService from '../../services/token-service';
 import BuxinfluxApiService from '../../services/buxinflux-api-service';
-import Nav from '../Nav/Nav';
+import Header from '../Header/Header';
 import LandingPage from '../../components/LandingPage/LandingPage'
 import BuxinfluxPage from '../../components/BuxinfluxPage/BuxinfluxPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -24,7 +24,7 @@ export class App extends Component {
         totalBalance: 0,
         totalIncome: 0,
         totalExpenses: 0,
-        totalPercentage: 0,
+        totalPercentage: '',
         percentage: -1,
         created: moment(new Date()).format("YYYY-MM-DD"),
         error: null,
@@ -270,9 +270,9 @@ export class App extends Component {
         return (
         <BuxinfluxContext.Provider value = {contextValue}>
             <div className='App'>
-                <nav>
-                    <Nav />
-                </nav>
+                <header>
+                    <Header />
+                </header>
                 <main className='App__main'>
                     {this.state.hasError && <p className='red'>There was an error! Oh no!</p>}
                     <ErrorBoundary>

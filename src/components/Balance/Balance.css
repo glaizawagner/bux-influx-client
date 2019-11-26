@@ -1,0 +1,43 @@
+.start {
+    display: block;
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 900;
+}
+
+#BalanceIncome {
+    display: block;
+    background-color: var(--font-income);
+    padding: 0 1rem;
+    margin: 0 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+#BalanceIncome .totalInc { 
+    float: right;
+    padding-right: 3rem;
+}
+
+#BalanceExpense {
+    display: block;
+    background-color: var(--font-expense);
+    padding: 0 1rem;
+    margin: 0 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+#BalanceExpense .totalExp{ 
+    float: right
+}
+
+#BalanceExpense .totalExp{ 
+    float: right
+}
+
+#perc {
+    padding-left: 7px;
+    font-size: 1.5rem;
+}

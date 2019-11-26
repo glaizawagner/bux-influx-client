@@ -2,6 +2,7 @@
 import React from 'react';
 import BuxinfluxContext from '../../contexts/BuxinfluxContext';
 import BuxinfluxApiService from '../../services/buxinflux-api-service'
+import helpers from '../../components/helpers/helpers';
 // import PropTypes from 'prop-types';
 // import config from '../../config'
 
@@ -20,7 +21,7 @@ export default function ExpenseItem(props) {
                 <li className ='ExpenseItem'>
                     <div className = 'ExpenseItem__row'>
                         <span> 
-                            {props.date_created} 
+                            {helpers.formatDateDisplay(props.date_created)} 
                             {props.description} 
                             {props.value} 
                             {props.percentage}

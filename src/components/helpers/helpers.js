@@ -20,8 +20,11 @@ function formatNumber(num, type) {
  }
 
  function formatPercentage(perc) {
-    if(perc>=0){
-        return (perc)+(perc > 0 ? '%':'---');
+     if(perc === 0 ){
+         return '---'
+     } 
+    if(perc >= 0){
+        return (perc)+((perc > 0) ? '%':'---');
     }else{
         perc = ''
     }
@@ -34,8 +37,13 @@ function formatDate(mnt) {
     return res
 }
 
+function formatDateDisplay(mnt) {
+    let dt = moment(mnt).format('MMM DD, YYYY');
+    return dt
+}
  export default {
      formatNumber,
      formatPercentage,
-     formatDate
+     formatDate,
+     formatDateDisplay
  };

@@ -1,13 +1,66 @@
-body {
+/*
+0 - 37.5em -> 0 - 600px:      Phone
+37.5em - 56.25em -> 600 -900px:     Tablet Portrait
+56.25em - 75em -> 900 - 1200px:   Tablet Landscape
+
+[1200 - 1800] is where normal styles apply
+1800px + :      Big Desktop
+
+1em = 16px 
+Note: em is the one that works well in media queries
+*/
+@import url('https://fonts.google.com/?query=sans&selection.family=Open+Sans:400,600,700,800,900');
+
+:root {
+    
+  --color-primary-light: rgb(245,245,245,1);
+  --color-primary-medium: rgba(230, 255, 243, 1);
+  --color-primary-dark:rgba(165, 255, 214, 1);
+  
+  --font-color:rgba(rgba(5, 4, 1, 1));
+  --font-expense:rgba(231, 139, 139, 1);
+  --font-income:rgba(168, 246, 219, 1);
+  }
+
+  
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+} */
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  color: var(--font-color);
+  box-sizing: inherit; 
+}
+
+
+html {
+      font-family: 'Open+Sans', sans-serif;
+      font-size: 62.5%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.7;
+    margin: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: var(--color-primary-light);
 }

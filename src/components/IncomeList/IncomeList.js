@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IncomeItem from '../../components/IncomeItem/IncomeItem';
 import BuxinfluxContext from  '../../contexts/BuxinfluxContext'
 import helpers from '../../components/helpers/helpers';
+import './IncomeList.css';
 
 export default class IncomeList extends Component {
     static defaultProps = {
@@ -14,7 +15,7 @@ export default class IncomeList extends Component {
         const { created, income } = this.context;
         return(
             <section className='IncomeList'>
-                <h2>Income</h2>
+                <span className="incName">Income</span>
                 <ul className="IncomeList__list" aria-live='polite'>
                     {income.map((income,i) => 
                         (helpers.formatDate(income.date_created) === helpers.formatDate(created)) 

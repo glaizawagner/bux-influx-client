@@ -1,0 +1,17 @@
+.incName {
+    color: var(--font-income);
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-top: 3rem;
+}
+
+.IncomeList__list {
+    text-align: left;
+    margin: 2% 25%;
+    list-style: none;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}

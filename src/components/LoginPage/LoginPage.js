@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
 import UsersApiService from '../../services/users-api-service'
+import './LoginPage.css';
 
 export default class LoginPage extends Component {
 
@@ -42,7 +43,8 @@ export default class LoginPage extends Component {
     const { error } = this.state
     console.log(`Successful login`);
     return (
-        <section>
+        <section className="FormLogin">
+          <h1> bux influx</h1>
           <form
             className='LoginForm'
             onSubmit={this.handleSubmitJwtAuth}
@@ -52,15 +54,15 @@ export default class LoginPage extends Component {
             </div>
             <div className='user_name'>
               <label htmlFor='LoginForm__user_name'>User name</label>
-              <input name='user_name' id='LoginForm__user_name' required/>
+              <input name='user_name' id='LoginForm__user_name' placeholder=" Username" required/>
             </div>
             <div className='password'>
               <label htmlFor='LoginForm__password'>Password</label>
-              <input name='password' type='password' id='LoginForm__password' />
+              <input name='password' type='password' id='LoginForm__password' placeholder=" Password" />
             </div>
-            <button type='submit'> Login </button>
-            <div> 
-              <Link to='/register'><button>Sign Up</button></Link>
+            <div className="btn-sub-sign">
+              <button type='submit' className="btn login"> Login </button>
+              <Link to='/register'><button className="btn SignUp">Sign Up</button></Link>
             </div>
           </form>
         </section>

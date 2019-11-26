@@ -4,6 +4,10 @@ import BuxinfluxContext from '../../contexts/BuxinfluxContext';
 import BuxinfluxApiService from '../../services/buxinflux-api-service';
 // import TokenService from '../../services/token-service';
 // import config from '../../config';
+import './AddIncomeExpenses.css';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Icon } from '@iconify/react';
+import checkCircle from '@iconify/icons-fa-regular/check-circle';
 
 class AddIncomeExpense extends Component {
     constructor() {
@@ -113,10 +117,6 @@ class AddIncomeExpense extends Component {
     //     }) 
     // };
 
-    clearfields = () => {
-        
-    }
-
     render() {
         return (
             
@@ -144,7 +144,8 @@ class AddIncomeExpense extends Component {
                         placeholder=' Value'
                         required
                     />
-                    <button type='submit'>Save</button>
+                        <button type='submit'><Icon icon={checkCircle} className="checkIcon" /> </button>
+                    
                 </form>
             </section>
         )

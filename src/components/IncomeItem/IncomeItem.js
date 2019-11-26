@@ -4,6 +4,8 @@ import BuxinfluxContext from '../../contexts/BuxinfluxContext';
 import BuxinfluxApiService from '../../services/buxinflux-api-service'
 // import PropTypes from 'prop-types';
 // import config from '../../config'
+import helpers from '../../components/helpers/helpers';
+import './IncomeItem.css';
 
 function deleteIncomeRequest(iid,cb) {
     BuxinfluxApiService.deleteIncome(iid)
@@ -20,8 +22,8 @@ export default function IncomeItem(props) {
             { (context) => (
                 <li className ='IncomeItem'>
                     <div className = 'IncomeItem__row'>
-                        <span> 
-                            {props.date_created} 
+                        {/* <span>  */}
+                            {helpers.formatDateDisplay(props.date_created)} 
                             {props.description} 
                             {props.value} 
         
@@ -36,7 +38,7 @@ export default function IncomeItem(props) {
                             >
                             Delete
                             </button>
-                        </span>
+                        {/* </span> */}
                     </div>
                 </li>
             )}
