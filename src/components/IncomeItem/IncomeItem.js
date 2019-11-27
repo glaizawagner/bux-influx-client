@@ -6,6 +6,9 @@ import BuxinfluxApiService from '../../services/buxinflux-api-service'
 // import config from '../../config'
 import helpers from '../../components/helpers/helpers';
 import './IncomeItem.css';
+import { Icon } from '@iconify/react';
+import timesCircle from '@iconify/icons-fa-regular/times-circle';
+
 
 function deleteIncomeRequest(iid,cb) {
     BuxinfluxApiService.deleteIncome(iid)
@@ -16,17 +19,16 @@ function deleteIncomeRequest(iid,cb) {
 }
 
 export default function IncomeItem(props) {
-
+    
     return(
         <BuxinfluxContext.Consumer>
             { (context) => (
                 <li className ='IncomeItem'>
                     <div className = 'IncomeItem__row'>
-                        {/* <span>  */}
-                            {helpers.formatDateDisplay(props.date_created)} 
-                            {props.description} 
-                            {props.value} 
-        
+                            <span className="items">{helpers.formatDateDisplay(props.date_created)}</span>
+                            <span className="items">{props.description}</span> 
+                            <span className="items">{props.value}</span>
+                            {/* <span className="items">{props.user_id}</span> */}
                             <button 
                                 className='IncomeItem__description'
                                 onClick={() => {
@@ -36,9 +38,8 @@ export default function IncomeItem(props) {
                                     )
                                 }}
                             >
-                            Delete
+                            <Icon icon={timesCircle} className="timesIcon" />
                             </button>
-                        {/* </span> */}
                     </div>
                 </li>
             )}
@@ -46,3 +47,7 @@ export default function IncomeItem(props) {
     )
 }
 
+
+IncomeItem.defaultProps = {
+    deleteIncome: () => {}
+}

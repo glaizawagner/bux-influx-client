@@ -18,6 +18,10 @@ class AddIncomeExpense extends Component {
     }
 
     static defaultProps = {
+        history: {
+            push: () => { }
+        },
+
         income: [],
         expenses: [],
         percentage: -1,
@@ -31,6 +35,8 @@ class AddIncomeExpense extends Component {
         const { type, description, value } = e.target;
         let perc ;
 
+        // console.log(this.match.params.iid)
+        // console.log(this.match.params.eid)
         const newInc = {
             date_created: this.context.created,
             type: type.value,
@@ -53,7 +59,8 @@ class AddIncomeExpense extends Component {
              BuxinfluxApiService.addNewIncome(newInc)
                 .then(res => {
                     this.context.addIncome(res)
-                    // this.props.history.push('/main')
+                    // console.log(`AddIncome: ${res}`);
+                    this.props.history.push(`/user/${res.user_id}`)
                 })
                 .then( () => {
                     description.value = ''
@@ -69,7 +76,8 @@ class AddIncomeExpense extends Component {
             BuxinfluxApiService.addNewExpenses(newExp)
                 .then(res => {
                     this.context.addExpenses(res)
-                    // this.props.history.push('/main')
+                    this.props.history.push(`/user/${res.user_id}`)
+                   
                 })
                 .then( () => {
                     description.value = ''
@@ -118,6 +126,7 @@ class AddIncomeExpense extends Component {
     // };
 
     render() {
+
         return (
             
             <section className='AddBuxInflux'>
@@ -125,7 +134,7 @@ class AddIncomeExpense extends Component {
                     className='AddBuxinflux__form'
                     onSubmit={this.handleSubmit}
                 >
-                    <select name='type'>
+                    <select name='type' className='type'>
                         <option value='inc'>+</option>
                         <option value='exp'>-</option>
                     </select>
@@ -144,7 +153,7 @@ class AddIncomeExpense extends Component {
                         placeholder=' Value'
                         required
                     />
-                        <button type='submit'><Icon icon={checkCircle} className="checkIcon" /> </button>
+                        <button type='submit' className="btnSub"><Icon icon={checkCircle} className="checkIcon" /> </button>
                     
                 </form>
             </section>

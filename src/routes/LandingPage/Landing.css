@@ -1,0 +1,14 @@
+h5 {
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5rem;
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+p {
+    text-indent: 5%;
+    text-align: justify;
+    text-justify: inter-word;
+    padding: 3rem 5rem; 
+}

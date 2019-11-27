@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import TokenService from '../../services/token-service';
+// import TokenService from '../../services/token-service';
 import BuxinfluxContext from '../../contexts/BuxinfluxContext';
 import './Header.css';
 
@@ -9,15 +9,18 @@ export default class Header extends Component {
   static contextType = BuxinfluxContext;
 
   handleLogoutClick = () => {
-    TokenService.clearAuthToken()
-      this.context.setLoggedIn();
-      this.context.clearError();
-      this.context.setLoggedInUser(null);
+    // console.log('successfully logout')
+    this.context.logoutUser();
   }
 
   renderLogoutLink() {
     return (
+      <>
+        {/* <Link to='/users/:uid'>
+          Logo
+        </Link> */}
         <Link onClick={this.handleLogoutClick} to='/'> <h3 className="log-out">Log-out</h3> </Link>
+    </>
     )
   }
 
@@ -25,16 +28,17 @@ export default class Header extends Component {
     return (
       <div className='Header__not-logged-in'>
           <Link to='/login'><span className="log-reg">Login</span></Link>
-          <Link to='/register'><button className="log-reg">Register</button></Link>
+          <Link to='/register'><span className="log-reg">Register</span></Link>
       </div>
     )
   }
 
   render() {
+    // console.log(`Current user in Header: ${this.context.currentUser}`);
     return <>
       <nav className="Header">
-              <h1 id="navlogo"><Link to='/main'> Logo </Link></h1>
-            {TokenService.hasAuthToken()
+              <h4 id="navlogo"><Link to='/'> Logo </Link></h4>
+            {this.context.currentUser
               ? this.renderLogoutLink()
               : this.renderLoginLink()}
       </nav>

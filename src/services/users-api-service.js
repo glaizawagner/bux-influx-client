@@ -14,6 +14,24 @@ const UsersApiService = {
             : res.json()
           )
     },
+    postUser(newUser) {
+      console.log(JSON.stringify(newUser));
+      return fetch(`${config.API_ENDPOINT}/users`, {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/json',
+              'authorization': `bearer ${TokenService.getAuthToken()}`,
+          },
+          body: JSON.stringify(
+              newUser
+          )
+      })
+          .then(res =>
+              (!res.ok)
+                  ? res.json().then(e => Promise.reject(e))
+                  : res.json()
+          )
+  }
 }
 
 export default UsersApiService;

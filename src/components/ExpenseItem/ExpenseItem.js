@@ -5,6 +5,9 @@ import BuxinfluxApiService from '../../services/buxinflux-api-service'
 import helpers from '../../components/helpers/helpers';
 // import PropTypes from 'prop-types';
 // import config from '../../config'
+import { Icon } from '@iconify/react';
+import timesCircle from '@iconify/icons-fa-regular/times-circle';
+
 
 function deleteExpenseRequest(eid,cb) {
     BuxinfluxApiService.deleteExpenses(eid)
@@ -20,11 +23,11 @@ export default function ExpenseItem(props) {
             { (context) => (
                 <li className ='ExpenseItem'>
                     <div className = 'ExpenseItem__row'>
-                        <span> 
-                            {helpers.formatDateDisplay(props.date_created)} 
-                            {props.description} 
-                            {props.value} 
-                            {props.percentage}
+                        <span > 
+                        <span className="items">{helpers.formatDateDisplay(props.date_created)} </span>
+                        <span className="items">{props.description} </span>
+                        <span className="items">{props.value} </span>
+                        <span className="items">{props.percentage} </span>
                             <button 
                                 className='ExpenseItem__btn'
                                 onClick={() => {
@@ -34,7 +37,7 @@ export default function ExpenseItem(props) {
                                     )
                                 }}
                             >
-                            Delete
+                            <Icon icon={timesCircle} className="timesIcon" />
                             </button>
                         </span>
                     </div>
@@ -44,3 +47,6 @@ export default function ExpenseItem(props) {
     )
 }
 
+ExpenseItem.defaultProps = {
+    deleteExpenses: () => {}
+}

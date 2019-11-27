@@ -41,6 +41,7 @@ function formatDateDisplay(mnt) {
     let dt = moment(mnt).format('MMM DD, YYYY');
     return dt
 }
+
  export default {
      formatNumber,
      formatPercentage,

@@ -11,18 +11,43 @@ export default class ExpenseList extends Component {
 
       static contextType = BuxinfluxContext;
       
-    render() {
+    componentDidMount() {
+        this.context.clearError();
+    }
+
+    renderExpenses() {
         const { created, expenses } = this.context;
+        // console.log(`Income list : ${this.context.expenses}`);
         return(
             <section className='ExpenseList'>
                 <span className="expName">Expenses</span>
                 <ul className="ExpenseList__list" aria-live='polite'>
-                    {expenses.map( (expense,idx) => 
-                        (helpers.formatDate(expense.date_created) === helpers.formatDate(created)) ? <ExpenseItem key={idx} eid={idx} {...expense} /> : ''
+                    {expenses.map((expense,i) => 
+                        (helpers.formatDate(expense.date_created) === helpers.formatDate(created)) 
+                        ? <ExpenseItem key={i} eid={i} user_id ={this.context.currentUser} {...expense} 
+                            // toggleEditing={() => this.toggleIncomeEditing(i)}
+                            // onChange={this.handleExpense}
+                            /> 
+                        : ''
                     )}
                 </ul>
             </section>    
         );
     }
+
+render(){
+    const { error } = this.context
+        return(
+            <div className='IncomeList'>
+               { error 
+                ? <p className='red'> There was an error, try again</p>
+                : this.renderExpenses()
+                }
+            </div>    
+        );
+    }
 }
+
+
+
 

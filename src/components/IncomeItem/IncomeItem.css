@@ -1,6 +1,16 @@
-.IncomeItem__row {
-    padding: 0 3rem;
-    margin: 0 2rem;
+.IncomeItem {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding: 5px 0;
+}
+
+.timesIcon {
+    font-size: 2rem;
+    border: transparent;
+    margin-top: 2px
+}
+
+.items {
+    margin: 0 1rem;
 }

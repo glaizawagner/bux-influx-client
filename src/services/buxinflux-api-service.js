@@ -3,8 +3,10 @@ import config from '../config'
 
 const BuxinfluxApiService = {
     getAllIncome() {
-        return fetch(`${config.API_ENDPOINT}/income`, {
+        return fetch(`${config.API_ENDPOINT}/income/`, {
+          method: 'GET',
           headers: {
+
             'authorization': `bearer ${TokenService.getAuthToken()}`,
           },
         })
@@ -52,31 +54,15 @@ const BuxinfluxApiService = {
               : res.json()
           )
     },
-    deleteExpenses(eid) {
-      return fetch(`${config.API_ENDPOINT}/expenses/${eid}`, {
-        method: 'DELETE',
-        headers: {
-          'content-type': 'application/json',
-          'authorization': `bearer ${TokenService.getAuthToken()}`,
-        },
-        body: JSON.stringify({
-          eid: eid
-        })
-      })
-        .then(res =>
-          (!res.ok)
-            ? res.json().then(e => Promise.reject(e))
-            : null
-        )
-  },
-    addNewIncome(newIncome){
+  
+    addNewIncome(user_id){
       return fetch(`${config.API_ENDPOINT}/income`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
           'authorization': `bearer ${TokenService.getAuthToken()}`,
         },
-        body: JSON.stringify(newIncome)
+        body: JSON.stringify(user_id)
       })
         .then(res =>
           (!res.ok)
@@ -102,6 +88,23 @@ const BuxinfluxApiService = {
             : null
         )
   },
+  deleteExpenses(eid) {
+    return fetch(`${config.API_ENDPOINT}/expenses/${eid}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({
+        eid: eid
+      })
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : null
+      )
+  },
     addNewExpenses(newExpense){
       return fetch(`${config.API_ENDPOINT}/expenses`, {
         method: 'POST',
@@ -110,6 +113,35 @@ const BuxinfluxApiService = {
           'authorization': `bearer ${TokenService.getAuthToken()}`,
         },
         body: JSON.stringify(newExpense)
+      })
+        .then(res =>
+          (!res.ok)
+            ? res.json().then(e => Promise.reject(e))
+            : res.json()
+        )
+    },
+
+    getUserAllIncome(user_id) {
+      return fetch(`${config.API_ENDPOINT}/users/${user_id}/income`, {
+        method: 'GET',
+        headers: {
+
+          'authorization': `bearer ${TokenService.getAuthToken()}`,
+        },
+      })
+        .then(res =>
+          (!res.ok)
+            ? res.json().then(e => Promise.reject(e))
+            : res.json()
+        )
+    },
+    getUserAllExpenses(user_id) {
+      return fetch(`${config.API_ENDPOINT}/users/${user_id}/expenses`, {
+        method: 'GET',
+        headers: {
+
+          'authorization': `bearer ${TokenService.getAuthToken()}`,
+        },
       })
         .then(res =>
           (!res.ok)

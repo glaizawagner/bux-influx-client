@@ -9,7 +9,7 @@
 1em = 16px 
 Note: em is the one that works well in media queries
 */
-@import url('https://fonts.google.com/?query=sans&selection.family=Open+Sans:400,600,700,800,900');
+/* @import url('https://fonts.google.com/?query=sans&selection.family=Open+Sans:400,600,700,800,900'); */
 
 :root {
     
@@ -63,4 +63,8 @@ body {
     padding: 1rem;
     box-sizing: border-box;
     background-color: var(--color-primary-light);
+}
+
+.red {
+  color: var(--font-expense);
 }

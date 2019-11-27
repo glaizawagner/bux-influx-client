@@ -2,28 +2,36 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
-import UsersApiService from '../../services/users-api-service'
-import './LoginPage.css';
+import './LoginForm.css';
 
-export default class LoginPage extends Component {
+export default class LoginForm extends Component {
+  static defaultProps = {
+    onLoginSuccess: () => { console.log('default') }
+  }
 
-  state = { error: null }
+  state = { 
+    error: null,
+  }
 
-  handleLoginSuccess = () => {
-    this.context.setLoggedIn();
-    UsersApiService.getLoggedInUser()
-      .then(res => {
-        this.context.setLoggedInUser(res)
-      })
-      .catch((err) => this.context.setError(err));
-      this.props.history.push('/login');
+  handleSubmitBasivAuth = ev => {
+    ev.preventDefault()
+    const { user_name, password } = ev.target
+
+    TokenService.saveAuthToken(
+      TokenService.makeBasicAuthToken(user_name.value, password.value)
+    )
+
+    user_name.value = ''
+    password.value = ''
+    this.props.onLoginSuccess()
   }
 
   handleSubmitJwtAuth = ev => {
       ev.preventDefault()
       this.setState({ error: null })
+
       const { user_name, password } = ev.target
-    
+
       AuthApiService.postLogin({
         user_name: user_name.value,
         password: password.value,
@@ -31,8 +39,13 @@ export default class LoginPage extends Component {
         .then(res => {
           user_name.value = ''
           password.value = ''
+
+          // console.log(`login form: ${res.user_id}`)
+          // console.log(`login form: ${res.user_id}`)
+
           TokenService.saveAuthToken(res.authToken)
-          this.handleLoginSuccess();
+          this.props.onLoginSuccess(res.user_id)
+
         })
         .catch(res => {
           this.setState({ error: res.error })
@@ -41,7 +54,7 @@ export default class LoginPage extends Component {
 
   render() {
     const { error } = this.state
-    console.log(`Successful login`);
+
     return (
         <section className="FormLogin">
           <h1> bux influx</h1>
