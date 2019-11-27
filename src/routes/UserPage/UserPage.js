@@ -28,13 +28,12 @@ class UserPage extends React.Component {
         BuxinfluxApiService.getUserAllIncome(this.context.currentUser)
         .then((income) => {
             this.context.setIncome(income)
-
         })
         .catch((e) => this.context.setError(e));
 
         BuxinfluxApiService.getUserAllExpenses(this.context.currentUser)
         .then((expense) => {
-            console.log(`user page: ${expense}`);
+            // console.log(`user page: ${expense}`);
             this.context.setExpenses(expense)
         })
         .catch((e) => this.context.setError(e));

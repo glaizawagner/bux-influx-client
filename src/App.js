@@ -16,6 +16,7 @@ import UsersApiService from './services/users-api-service';
 import helpers from './components/helpers/helpers';
 // import IncomeList from '../IncomeList/IncomeList';
 import UserPage from './routes/UserPage/UserPage';
+// import BuxinfluxApiService from './services/buxinflux-api-service';
 import './App.css'
 
 class App extends Component {
@@ -140,26 +141,6 @@ class App extends Component {
         })
     }
 
-    // getAllIncome = () => {
-    //     BuxinfluxApiService.getAllIncome()
-    //         .then(res => {
-    //             this.setState({
-    //                 income: res
-    //             })
-    //         })
-    //         .catch((e) => this.setError(e));
-    // }
-
-    // getAllExpenses = () => {
-    //     BuxinfluxApiService.getAllExpenses()
-    //         .then(res => {
-    //             this.setState({
-    //                 expenses: res
-    //             })
-    //         })
-    //         .catch((e) => this.setError(e));
-    // }
-
     handleTotalExpenses = () => {
         let te = this.state.expenses.reduce((prevBal, curItem) => {
             if((curItem.value > 0) && (helpers.formatDate(this.state.created)===helpers.formatDate(curItem.date_created))) {
@@ -183,8 +164,23 @@ class App extends Component {
     }
 
     handleTotalBalance = () => {
-        let tb = this.handleTotalIncome() - this.handleTotalExpenses();
-        return tb;
+        let hi = this.handleTotalIncome();
+        let he = this.handleTotalExpenses();
+        let hb;
+
+        hb = hi - he;
+
+        // if (hi >= he){
+        //     hb = hi - he;
+            
+        // }
+        // if(he >= hb ) {
+        //     hb = he - hi;
+            
+        // }
+        // console.log(hb)
+        return hb;
+        
     }
 
     handleTotalPercentage = () => {
@@ -198,7 +194,6 @@ class App extends Component {
         console.log(`total percentage: ${tp}`)
         return tp;  
         
-     
     }
 
     // toggleIncomeEditing = index => {
@@ -277,7 +272,8 @@ class App extends Component {
         };
 
 
-        // console.log(`For username: ${this.username}`)
+        // console.log(`For current user: ${this.state.currentUser}`)
+        // console.log(`For current user: ${this.user_id}`)
         // console.log(`For userid: ${this.userid}`);
         // console.log(`For username: ${this.setUsername}`)
         // console.log(`For userid: ${this.setUserId}`);

@@ -17,6 +17,8 @@ function formatNumber(num, type) {
     dec = numsplit[1]; //for decimal
     
     return (type === 'exp' ? '-':'+') + ' ' + int + '.' + dec;
+
+        
  }
 
  function formatPercentage(perc) {

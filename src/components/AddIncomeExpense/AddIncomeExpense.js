@@ -35,8 +35,6 @@ class AddIncomeExpense extends Component {
         const { type, description, value } = e.target;
         let perc ;
 
-        // console.log(this.match.params.iid)
-        // console.log(this.match.params.eid)
         const newInc = {
             date_created: this.context.created,
             type: type.value,
@@ -45,6 +43,7 @@ class AddIncomeExpense extends Component {
         }
         
         perc = ((parseFloat(value.value)/parseFloat(this.context.onChangeIncome()))*100)
+        console.log(`Add income : ${perc}`);
 
         const newExp = {
             date_created: this.context.created,
@@ -59,7 +58,6 @@ class AddIncomeExpense extends Component {
              BuxinfluxApiService.addNewIncome(newInc)
                 .then(res => {
                     this.context.addIncome(res)
-                    // console.log(`AddIncome: ${res}`);
                     this.props.history.push(`/user/${res.user_id}`)
                 })
                 .then( () => {
@@ -88,42 +86,6 @@ class AddIncomeExpense extends Component {
                 }) 
         }
     }
-        
-        // fetch(endpoints, {
-        //     method: 'POST',
-        //     body: JSON.stringify(newIncExp),
-        //     headers: {
-        //         'content-type': 'application/json',
-        //         'authorization': `bearer ${TokenService.getAuthToken()}`,
-        //     }
-        // })
-        // .then(res => {
-        //     if(!res.ok) {
-        //         return res.json().then(error => Promise.reject(error))
-        //     }
-        //     return res.json()
-        // })
-        // .then( data => {
-    //         if(type.value === 'inc'){
-    //             console.log(type.value)
-    //             this.context.addIncome(data)
-    //             this.props.history.push('/')
-    //         }
-               
-    //         if(type.value === 'exp'){
-    //             console.log(this.context.addExpenses)
-    //             this.context.addExpenses(data)
-    //             this.props.history.push('/')
-                
-    //         }
-                
-            
-
-    //     })
-    //     .catch(error => {
-    //         console.error(error)
-    //     }) 
-    // };
 
     render() {
 
