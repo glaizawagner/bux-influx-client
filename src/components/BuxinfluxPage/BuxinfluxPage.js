@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BuxinfluxContext from '../../contexts/BuxinfluxContext';
-import BuxinfluxApiService from '../../services/buxinflux-api-service.js';
+// import BuxinfluxApiService from '../../services/buxinflux-api-service.js';
 import BudgetFilter from '../../components/BudgetFilter/BudgetFilter';
 import Balance from '../../components/Balance/Balance';
 import AddIncomeExpense from '../../components/AddIncomeExpense/AddIncomeExpense';

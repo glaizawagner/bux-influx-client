@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import BuxinfluxContext from '../../contexts/BuxinfluxContext';
 import BuxinfluxApiService from '../../services/buxinflux-api-service';
 import BuxInfluxPage from '../../components/BuxinfluxPage/BuxinfluxPage';
