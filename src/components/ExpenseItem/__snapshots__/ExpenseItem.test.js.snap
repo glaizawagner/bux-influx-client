@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Expense Item  component renders Expense given props 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`Expense Item  component renders Expenses by default 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

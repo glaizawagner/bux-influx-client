@@ -13,7 +13,7 @@ export default class IncomeList extends Component {
     static contextType = BuxinfluxContext;
 
     componentDidMount() {
-        this.context.clearError();
+        // this.context.clearError();
     }
 
     renderIncome(){
@@ -30,8 +30,8 @@ export default class IncomeList extends Component {
                             iid={i} 
                             user_id ={this.context.currentUser} 
                             {...income} 
-                            toggleEditing={() => this.toggleIncomeEditing(i)}
-                            onChange={this.handleIncomeUpdate}
+                            // toggleEditing={() => this.toggleIncomeEditing(i)}
+                            // onChange={this.handleIncomeUpdate}
                             /> 
                         : ''
                     )}

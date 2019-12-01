@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Income Item  component renders Income by default 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
+exports[`Income Item  component renders Income given props 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;

@@ -18,16 +18,19 @@ function deleteExpenseRequest(eid,cb) {
 }
 
 export default function ExpenseItem(props) {
+    console.log(props.description)
+    console.log(props.percentage)
     return(
         <BuxinfluxContext.Consumer>
             { (context) => (
                 <li className ='ExpenseItem'>
                     <div className = 'ExpenseItem__row'>
                         <span > 
-                        <span className="items">{helpers.formatDateDisplay(props.date_created)} </span>
-                        <span className="items">{props.description} </span>
-                        <span className="items">{props.value} </span>
-                        <span className="items">{props.percentage} </span>
+                            <span className="items">{helpers.formatDateDisplay(props.date_created)} </span>
+                            <span className="items">{props.description} </span>
+                            <span className="items">{props.value} 
+                            <span className="items">{props.percentage} </span></span>
+                        
                             <button 
                                 className='ExpenseItem__btn'
                                 onClick={() => {

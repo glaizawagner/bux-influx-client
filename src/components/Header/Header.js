@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import TokenService from '../../services/token-service';
 import BuxinfluxContext from '../../contexts/BuxinfluxContext';
+import biLogo from '../../images/buxinflux-logo.png'
 import './Header.css';
 
 export default class Header extends Component {
@@ -9,7 +10,7 @@ export default class Header extends Component {
   static contextType = BuxinfluxContext;
 
   handleLogoutClick = () => {
-    // console.log('successfully logout')
+    console.log('successfully logout')
     this.context.logoutUser();
   }
 
@@ -37,7 +38,7 @@ export default class Header extends Component {
     // console.log(`Current user in Header: ${this.context.currentUser}`);
     return <>
       <nav className="Header">
-              <h4 id="navlogo"><Link to='/'> Logo </Link></h4>
+              <h4 id="navlogo"><Link to='/'> <img src={biLogo} alt='Buxinflux Logo'/> </Link></h4>
             {this.context.currentUser
               ? this.renderLogoutLink()
               : this.renderLoginLink()}

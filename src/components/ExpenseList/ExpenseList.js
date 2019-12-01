@@ -12,7 +12,7 @@ export default class ExpenseList extends Component {
       static contextType = BuxinfluxContext;
       
     componentDidMount() {
-        this.context.clearError();
+        // this.context.clearError();
     }
 
     renderExpenses() {
@@ -25,8 +25,6 @@ export default class ExpenseList extends Component {
                     {expenses.map((expense,i) => 
                         (helpers.formatDate(expense.date_created) === helpers.formatDate(created)) 
                         ? <ExpenseItem key={i} eid={i} user_id ={this.context.currentUser} {...expense} 
-                            // toggleEditing={() => this.toggleIncomeEditing(i)}
-                            // onChange={this.handleExpense}
                             /> 
                         : ''
                     )}

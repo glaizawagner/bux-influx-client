@@ -17,24 +17,30 @@ import helpers from './components/helpers/helpers';
 // import IncomeList from '../IncomeList/IncomeList';
 import UserPage from './routes/UserPage/UserPage';
 // import BuxinfluxApiService from './services/buxinflux-api-service';
+// import NumberFormat from 'react-number-format';
 import './App.css'
 
 class App extends Component {
     state = {
         income: [],
         expenses: [],
-        totalBalance: 0,
-        totalIncome: 0,
-        totalExpenses: 0,
-        totalPercentage: '',
-        percentage: -1,
+        users: [],
         created: moment(new Date()).format("YYYY-MM-DD"),
         error: null,
         currentUser: null,
+        username: null,
         loggedIn: TokenService.hasAuthToken()
         ? true : false
     }
     
+
+    setUserName = (uName) => {
+        this.setState({
+            userName: uName
+        })
+
+    }
+
     setLoggedIn = () => {
         this.setState({
             loggedIn: TokenService.hasAuthToken()
@@ -87,12 +93,6 @@ class App extends Component {
         })
     }
 
-    clearUserExpenses = () => {
-        this.setState({
-            userExpenses: []
-        })
-    }
-
     handleAddIncome = inc => {
         this.setState({
             income: [...this.state.income, inc]
@@ -135,15 +135,15 @@ class App extends Component {
         })
     }
 
-    handleTotalChange = value => {
-        this.setState({
-            totalBalance: value
-        })
-    }
+    // handleTotalChange = value => {
+    //     this.setState({
+    //         // totalBalance: value
+    //     })
+    // }
 
     handleTotalExpenses = () => {
         let te = this.state.expenses.reduce((prevBal, curItem) => {
-            if((curItem.value > 0) && (helpers.formatDate(this.state.created)===helpers.formatDate(curItem.date_created))) {
+            if((curItem.value < 0) && (helpers.formatDate(this.state.created)===helpers.formatDate(curItem.date_created))) {
                 return prevBal += parseFloat(curItem.value);
             }else{
                 return prevBal;
@@ -153,14 +153,14 @@ class App extends Component {
     }
 
     handleTotalIncome = () => {
-        let ti = this.state.income.reduce((prevBal, curItem) => {
-            if((curItem.value > 0) && (helpers.formatDate(this.state.created)===helpers.formatDate(curItem.date_created))) {
-                return prevBal += parseFloat(curItem.value);
-            }else{
-                return prevBal;
-            }
-        }, 0);
-        return ti;  
+            let ti = this.state.income.reduce((prevBal, curItem) => {
+                if((curItem.value > 0) && (helpers.formatDate(this.state.created)===helpers.formatDate(curItem.date_created))) {
+                    return prevBal += parseFloat(curItem.value);
+                }else{
+                    return prevBal;
+                }
+            }, 0);
+            return  ti;
     }
 
     handleTotalBalance = () => {
@@ -168,64 +168,42 @@ class App extends Component {
         let he = this.handleTotalExpenses();
         let hb;
 
-        hb = hi - he;
-
-        // if (hi >= he){
-        //     hb = hi - he;
-            
-        // }
-        // if(he >= hb ) {
-        //     hb = he - hi;
-            
-        // }
-        // console.log(hb)
+        if(hi >= he) {
+            hb = hi + he;
+            return hb;
+        }
+        if(he >= hi){
+            hb = he + hi;
+            return hb
+        }
         return hb;
         
     }
 
     handleTotalPercentage = () => {
-        let tp = this.state.expenses.reduce((prevBal, curItem) => {
-            if((curItem.percentage > 0) & (helpers.formatDate(this.state.created)===helpers.formatDate(curItem.date_created))) {
-                return prevBal += parseFloat(curItem.percentage);
-            }else{
-                return prevBal;
-            }
-        }, 0);
-        console.log(`total percentage: ${tp}`)
-        return tp;  
+        // console.log(this.state.currentUser)
+        let tp,checknum;
+        let hi = this.handleTotalIncome();
+        let he = this.handleTotalExpenses();
+        checknum = Math.abs(he)
+        // console.log(`he in total per: ${checknum}`)
+        if(hi > checknum) {
+               let tp = this.state.expenses.reduce((prevBal, curItem) => {
+                if((curItem.percentage > 0) && (helpers.formatDate(this.state.created)===helpers.formatDate(curItem.date_created))) {
+                    return prevBal += parseFloat(curItem.percentage);
+                }else{
+                    return prevBal;
+                }
+            }, 0);
+            // console.log(`total percentage: ${tp}`)
+            return tp;  
+        }if(checknum > hi) {
+            tp = 0;
+            return tp;
+        }
+        
         
     }
-
-    // toggleIncomeEditing = index => {
-    //     this.setState({
-    //         income: this.state.income.map((income, incomeIndex) => {
-    //             if(incomeIndex === index){
-    //                 return {
-    //                     ...income,
-    //                     isEditing: !income.isEditing
-    //                 }
-    //             }
-    //             return income;
-    //         })
-    //     });
-    // }
-
-    // handleIncomeUpdate = (event, index) => {
-    //     const target = event.target;
-    //     const value = target.value;
-    //     const name = target.name;
-    //     this.setState({
-    //         income: this.state.income.map((income, incomeIndex) => {
-    //             if(incomeIndex === index) {
-    //                 return {
-    //                     ...income,
-    //                     [name]: value
-    //                 }
-    //             }
-    //             return income;
-    //         })
-    //     });
-    // }
 
     componentDidMount(){
         if(this.state.loggedIn) {
@@ -251,8 +229,6 @@ class App extends Component {
             setLoggedInUser: this.setLoggedInUser,
             setError: this.setError,
             clearError: this.clearError,
-            clearUserIncome: this.clearUserIncome,
-            clearUserExpenses: this.clearUserExpenses,
             addIncome: this.handleAddIncome,
             setIncome: this.setIncome,
             deleteIncome: this.deleteIncome,
@@ -265,22 +241,20 @@ class App extends Component {
             onChangeIncome: this.handleTotalIncome,
             onChangeExpenses: this.handleTotalExpenses,
             onChangeBalance: this.handleTotalBalance,
-            handleTotalPercentage: this.handleTotalPercentage,
+            onChangePerc: this.handleTotalPercentage,
             clearIncome: this.clearIncome,
             clearExpenses: this.clearExpenses,
-            logoutUser: this.logoutUser
+            logoutUser: this.logoutUser,
+            userName: this.state.userName,
+            setUserName: this.setUserName
+            
         };
 
+        // console.log(`app username: ${this.state.userName}`)
+        // console.log(`app setUserName: ${this.setUserName}`)
 
         // console.log(`For current user: ${this.state.currentUser}`)
         // console.log(`For current user: ${this.user_id}`)
-        // console.log(`For userid: ${this.userid}`);
-        // console.log(`For username: ${this.setUsername}`)
-        // console.log(`For userid: ${this.setUserId}`);
-        // console.log(`For loggein: ${this.loggedIn}`);
-        // console.log(`For set loggedin: ${this.setLoggedIn}`);
-        // console.log(`For created: ${this.state.created}`);
-        // console.log(`For date change: ${this.onDateChange}`);
 
         return (
         <BuxinfluxContext.Provider value = {contextValue}>

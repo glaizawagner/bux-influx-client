@@ -8,11 +8,15 @@
     padding: 0 2rem;
     
 }
-
+img {
+    height: 6rem;
+    width: 6rem;
+}
 .Header:hover{
     cursor: pointer;
 }
 #navlogo {
+    margin-top: 1rem;
     margin-right: auto;
 }
 

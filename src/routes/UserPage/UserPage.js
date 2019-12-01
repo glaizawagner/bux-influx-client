@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import BuxinfluxContext from '../../contexts/BuxinfluxContext';
 import BuxinfluxApiService from '../../services/buxinflux-api-service';
 import BuxInfluxPage from '../../components/BuxinfluxPage/BuxinfluxPage';
@@ -19,7 +18,7 @@ class UserPage extends React.Component {
     
     componentDidMount = () => {
         this.context.clearError()
-        // console.log(this.context.currentUser);
+
         if(!this.context.currentUser) {
             this.context.clearIncome()
             this.context.clearExpenses()
@@ -33,15 +32,18 @@ class UserPage extends React.Component {
 
         BuxinfluxApiService.getUserAllExpenses(this.context.currentUser)
         .then((expense) => {
-            // console.log(`user page: ${expense}`);
+            
             this.context.setExpenses(expense)
         })
         .catch((e) => this.context.setError(e));
     }
 
     render() {
+        const user = this.context.currentUser;
+        
         return (
             <>
+            <h2> Welcome back {user ? ',' + user : ''} </h2>
             <section>
                 <h2> Bux Influx</h2>
                 <BuxInfluxPage /> 

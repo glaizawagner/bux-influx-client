@@ -10,7 +10,7 @@
 
 .checkIcon {
     font-size: 3rem;
-    border: transparent;
+    /* border: transparent; */
 }
 
 /* .AddBuxInflux {
@@ -24,16 +24,19 @@
 }
 
 .type {
-    height: 4rem;
-    width: 5%;
+    /* height: 2rem; */
+    margin: auto;
+    /* width: 5%; */
     font-size: 2rem;
-    font-weight: bold;
-    margin-top: -1rem;
+    /* font-weight: bold; */
+    /* margin-top: -1rem; */
+    border: 3px solid green;
 }
 
 .btnSub {
     margin-top: -1rem;
     height: 4rem;
-    background: transparent;
+    /* background: transparent; */
     width: auto;
+    /* outline: none; */
 }

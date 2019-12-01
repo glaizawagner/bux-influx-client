@@ -16,11 +16,12 @@ export default class LoginPage extends Component {
   handleLoginSuccess = (user) => {
     // console.log(`log in page: ${user}`)
     const { location, history } = this.props
-    // console.log(`login userid: ${user.user_id}`)
+    console.log(`login username: ${user.uname}`)
     // console.log(`login userid: ${user.uid}`)
+    console.log(`login user: ${user}`)
     const destination = (location.state || {}).from || `/users/${user}`
-    // console.log(`for destination login: ${destination}`);
     this.context.setLoggedInUser(user)
+
     history.push(destination)
   }
 

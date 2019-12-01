@@ -5,9 +5,11 @@ import BuxinfluxApiService from '../../services/buxinflux-api-service';
 // import TokenService from '../../services/token-service';
 // import config from '../../config';
 import './AddIncomeExpenses.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Icon } from '@iconify/react';
 import checkCircle from '@iconify/icons-fa-regular/check-circle';
+// function styleFn(provided, state) {
+//   return { ...provided, color: state.isFocused ? 'blue' : 'red' };
+// }
 
 class AddIncomeExpense extends Component {
     constructor() {
@@ -43,13 +45,12 @@ class AddIncomeExpense extends Component {
         }
         
         perc = ((parseFloat(value.value)/parseFloat(this.context.onChangeIncome()))*100)
-        console.log(`Add income : ${perc}`);
 
         const newExp = {
             date_created: this.context.created,
             type: type.value,
             description: description.value,
-            value: value.value,
+            value: -Math.abs(value.value),
             percentage: perc
         }
      
@@ -88,7 +89,6 @@ class AddIncomeExpense extends Component {
     }
 
     render() {
-
         return (
             
             <section className='AddBuxInflux'>
@@ -115,7 +115,9 @@ class AddIncomeExpense extends Component {
                         placeholder=' Value'
                         required
                     />
-                        <button type='submit' className="btnSub"><Icon icon={checkCircle} className="checkIcon" /> </button>
+                        <button type='submit' className="btnSub">
+                        <Icon icon={checkCircle} className="checkIcon" /> 
+                        </button> 
                     
                 </form>
             </section>

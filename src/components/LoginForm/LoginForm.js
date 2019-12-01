@@ -6,7 +6,9 @@ import './LoginForm.css';
 
 export default class LoginForm extends Component {
   static defaultProps = {
+    // username: this.context.username,
     onLoginSuccess: () => { console.log('default') }
+
   }
 
   state = { 
@@ -32,18 +34,32 @@ export default class LoginForm extends Component {
 
       const { user_name, password } = ev.target
 
+      // console.log(`login form userName: ${user_name.value}`);
+
+      // this.context.setUserName(user_name.value)
+      // console.log(this.context.username)
+
       AuthApiService.postLogin({
         user_name: user_name.value,
         password: password.value,
       })
+ 
         .then(res => {
+          // console.log(`login form res username: ${user_name.value}`)
+          // this.context.setUserName(user_name.value)
+          // console.log(this.context.username)
+          // this.context.setUserName(res.user_name);
+          // this.context.setUserName(user_name.value);
+          // console.log(`login form res: ${res.user_name}`)
+          // console.log(`login form username: ${res.username}`)
           user_name.value = ''
           password.value = ''
 
-          // console.log(`login form: ${res.user_id}`)
-          // console.log(`login form: ${res.user_id}`)
+         
+         
 
           TokenService.saveAuthToken(res.authToken)
+
           this.props.onLoginSuccess(res.user_id)
 
         })
@@ -54,7 +70,8 @@ export default class LoginForm extends Component {
 
   render() {
     const { error } = this.state
-
+    const { username } = this.context
+    console.log(username)
     return (
         <section className="FormLogin">
           <h1> bux influx</h1>
@@ -67,7 +84,7 @@ export default class LoginForm extends Component {
             </div>
             <div className='user_name'>
               <label htmlFor='LoginForm__user_name'>User name</label>
-              <input name='user_name' id='LoginForm__user_name' placeholder=" Username" required/>
+              <input name='user_name' value = {username} id='LoginForm__user_name' placeholder=" Username" required/>
             </div>
             <div className='password'>
               <label htmlFor='LoginForm__password'>Password</label>
