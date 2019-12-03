@@ -17,7 +17,7 @@ All API call functions live in the src directory in a folder titled services.
 ## Links:
 
 - Github
-    [Client](https://github.com/glaizawagner/bux-influx-client)
+    [Client](https://github.com/glaizawagner/bux-influx-client) |
     [Server](https://github.com/glaizawagner/bux-influx-server)
 
 - Heroku
