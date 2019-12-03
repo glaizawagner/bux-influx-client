@@ -23,17 +23,17 @@ All API call functions live in the src directory in a folder titled services.
 - Heroku
     [Heroku](https://glaiza-buxinflux-server.herokuapp.com/)
 
-##Screenshots
+## Screenshots
 
 Landing Page – located in routes folder
- ![Landing Page](./screenshots/Landing Page.png)
+ ![Landing Page](./screenshots/Landing.png)
 
 Login Page – located in routes and login form located in components. 
 By default, I added username-test and password-password for user to try how my app works.
-![Login Page](./screenshots/Login Page.png)
+![Login Page](./screenshots/Login.png)
  
 Registration Page – located in routes and Registration form located in components.
-![Registration Page](./screenshots/Create Account.png)
+![Registration Page](./screenshots/Create.png)
 
 Userpage – located in routes and returns three (3) components such as BuxInfluxPage, IncomeList and ExpenseList. 
 
@@ -47,9 +47,9 @@ The balance will be automatically updated as well as the income and expenses.
 
 Data added for income/expenses will be displayed at the below under Income/Expenses.
  
-![User Main Page](./screenshots/User Main Page - Current month.png)
+![User Main Page](./screenshots/UserPage.png)
 
 Userpage – Previous month sample when user changed the current month to 11.
-![User Main Page](./screenshots/User Main Page - Updating prev month.png)
+![User Main Page](./screenshots/UserPagePrev.png)
 
 Created by: Glaiza E. Wagner
