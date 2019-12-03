@@ -51,7 +51,7 @@ class AddIncomeExpense extends Component {
         const { type, description, value } = e.target;
         let perc ;
 
-        console.log(`add inc/exp ${this.context.created}`);
+        // console.log(`add inc/exp ${this.context.created}`);
         const newInc = {
             date_created: this.context.created,
             type: type.value,
