@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# App name: Bux Influx
 
-## Available Scripts
+Live app: [Bux Influx](https://glaiza-buxinflux-app.now.sh/)
 
-In the project directory, you can run:
+## About Bux Influx
 
-### `npm start`
+Bux Influx is an application that allows a user to track his or her financial health. By tracking monthly income and expenses, Bux Influx will determine whether or not the user has extra cash left over at the end of the month. Armed with this knowledge, the user can then make informed decisions about how to spend money during future months.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies used
+- Client side: Reactjs, Javascript, HTML and CSS
+- Server side: Express.js, Node.js, PostgreSQL
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Services: 
 
-### `npm test`
+All API call functions live in the src directory in a folder titled services.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Links:
 
-### `npm run build`
+- Github
+    [Client](https://github.com/glaizawagner/bux-influx-client)
+    [Server](https://github.com/glaizawagner/bux-influx-server)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Heroku
+    [Heroku](https://glaiza-buxinflux-server.herokuapp.com/)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+##Screenshots
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Landing Page – located in routes folder
+ ![Landing Page](./screenshots/Landing Page.png)
 
-### `npm run eject`
+Login Page – located in routes and login form located in components. 
+By default, I added username-test and password-password for user to try how my app works.
+![Login Page](./screenshots/Login Page.png)
+ 
+Registration Page – located in routes and Registration form located in components.
+![Registration Page](./screenshots/Create Account.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Userpage – located in routes and returns three (3) components such as BuxInfluxPage, IncomeList and ExpenseList. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In BuxInfluxPage is where BudgetFilter(monthly), Balance and AddIncomeExpenses components is returned.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+User can add previous Income/Expenses by just changing the month to 11 or which month they want to update.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+User will know if they are adding an income or expenses because the color will automatically change to green when they select the type (+) and red when they select the type (-).
 
-## Learn More
+The balance will be automatically updated as well as the income and expenses.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Data added for income/expenses will be displayed at the below under Income/Expenses.
+ 
+![User Main Page](./screenshots/User Main Page - Current month.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Userpage – Previous month sample when user changed the current month to 11.
+![User Main Page](./screenshots/User Main Page - Updating prev month.png)
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Created by: Glaiza E. Wagner
