@@ -1,16 +1,22 @@
-.IncomeItem {
+.IncomeItem__row {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-self: flex-start;
     margin: 0 auto;
     padding: 5px 0;
+    font-size: 1.5rem;
 }
 
-.timesIcon {
-    font-size: 2rem;
-    border: transparent;
-    margin-top: 2px
-}
 
+.IncomeItem__description {
+    font-size: 1.5rem;
+    background: transparent;
+    border: 0;
+}
 .items {
     margin: 0 1rem;
+}
+
+.itm-extra {
+    color: #4c924c;
 }

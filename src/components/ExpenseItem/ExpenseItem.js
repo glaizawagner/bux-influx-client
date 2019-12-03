@@ -7,7 +7,7 @@ import helpers from '../../components/helpers/helpers';
 // import config from '../../config'
 import { Icon } from '@iconify/react';
 import timesCircle from '@iconify/icons-fa-regular/times-circle';
-
+import './ExpenseItem.css'
 
 function deleteExpenseRequest(eid,cb) {
     BuxinfluxApiService.deleteExpenses(eid)
@@ -18,21 +18,18 @@ function deleteExpenseRequest(eid,cb) {
 }
 
 export default function ExpenseItem(props) {
-    console.log(props.description)
-    console.log(props.percentage)
     return(
         <BuxinfluxContext.Consumer>
             { (context) => (
                 <li className ='ExpenseItem'>
                     <div className = 'ExpenseItem__row'>
-                        <span > 
                             <span className="items">{helpers.formatDateDisplay(props.date_created)} </span>
                             <span className="items">{props.description} </span>
-                            <span className="items">{props.value} 
-                            <span className="items">{props.percentage} </span></span>
+                            <span className="items exp-extra">{props.value} </span>
+                            <span className="items exp-extra">{helpers.formatPercentage(props.percentage)} </span>
                         
                             <button 
-                                className='ExpenseItem__btn'
+                                className="ExpenseItem__btn exp-extra"
                                 onClick={() => {
                                     deleteExpenseRequest(
                                         props.eid,
@@ -40,9 +37,8 @@ export default function ExpenseItem(props) {
                                     )
                                 }}
                             >
-                            <Icon icon={timesCircle} className="timesIcon" />
+                                <Icon icon={timesCircle} className="timesIcon" />
                             </button>
-                        </span>
                     </div>
                 </li>
             )}

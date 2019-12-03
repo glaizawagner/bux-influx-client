@@ -10,7 +10,6 @@ class BudgetFilter extends Component {
 
     render() {
         
-        // console.log(this.context.created);
             return (
                 <>
                     <BuxinfluxContext.Consumer> 

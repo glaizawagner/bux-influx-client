@@ -1,4 +1,4 @@
-/*
+/* /*
 0 - 37.5em -> 0 - 600px:      Phone
 37.5em - 56.25em -> 600 -900px:     Tablet Portrait
 56.25em - 75em -> 900 - 1200px:   Tablet Landscape
@@ -10,7 +10,7 @@
 Note: em is the one that works well in media queries
 */
 /* @import url('https://fonts.google.com/?query=sans&selection.family=Open+Sans:400,600,700,800,900'); */
-
+/* 
 :root {
     
   --color-primary-light: rgb(245,245,245,1);
@@ -20,7 +20,7 @@ Note: em is the one that works well in media queries
   --font-color:rgba(rgba(5, 4, 1, 1));
   --font-expense:rgba(231, 139, 139, 1);
   --font-income:rgba(168, 246, 219, 1);
-  }
+  } */
 
   
 /* body {
@@ -38,7 +38,7 @@ Note: em is the one that works well in media queries
 } */
 
 
-*,
+/* *,
 *::after,
 *::before {
   margin: 0;
@@ -67,4 +67,4 @@ body {
 
 .red {
   color: var(--font-expense);
-}
+} */ 

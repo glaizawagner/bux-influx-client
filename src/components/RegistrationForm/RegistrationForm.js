@@ -35,7 +35,7 @@ export default class RegistrationForm extends Component {
   render() {
     const { error } = this.state
     return (
-      <section>
+      <section className="FormRegistration">
          <h2> Create  Account </h2>
         <form
           className='RegistrationForm'
@@ -46,23 +46,23 @@ export default class RegistrationForm extends Component {
           </div>
           <div className='full_name'>
             <label htmlFor='RegistrationForm__full_name'>Full name</label>
-            <input name='full_name' type='text' id='RegistrationForm__full_name' required/>
+            <input name='full_name' type='text' id='RegistrationForm__full_name' placeholder=' Full name' required/>
           </div>
           <div className='user_name'>
             <label htmlFor='RegistrationForm__user_name'>User name </label>
-            <input name='user_name' type='text' id='RegistrationForm__user_name' required />
+            <input name='user_name' type='text' id='RegistrationForm__user_name' placeholder=' User name'required />
           </div>
           <div className='password'>
             <label htmlFor='RegistrationForm__password'>Password</label>
-            <input name='password' type='password' id='RegistrationForm__password' required/>
+            <input name='password' type='password' id='RegistrationForm__password' placeholder=' Password'required/>
           </div>
           <div className='nick_name'>
             <label htmlFor='RegistrationForm__nick_name'>Nickname</label>
-            <input name='nick_name' type='text' id='RegistrationForm__nick_name' required />
+            <input name='nick_name' type='text' id='RegistrationForm__nick_name' placeholder=' Nickname' required/>
           </div>
           <div>
-              <button type='submit' className="btn-sc"> Submit </button>
-              <Link to='/'> <button className="btn-sc"> Cancel </button></Link>
+              <button type='submit' className="btn-sc">Submit</button>
+              <Link to='/'><button className="btn-sc">Cancel</button></Link>
           </div>
         </form>
       </section>

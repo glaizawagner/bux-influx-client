@@ -1,7 +1,13 @@
+.bux-title {
+    text-transform: uppercase;
+    display: block;
+}
+
 #BudgetFilter{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 2rem;
 }
 
 #created {

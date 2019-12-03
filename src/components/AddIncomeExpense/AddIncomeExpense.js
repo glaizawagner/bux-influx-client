@@ -1,3 +1,4 @@
+/* eslint-disable no-labels */
 /* eslint-disable no-useless-constructor */
 import React, { Component } from 'react';
 import BuxinfluxContext from '../../contexts/BuxinfluxContext';
@@ -15,7 +16,9 @@ class AddIncomeExpense extends Component {
     constructor() {
         super();
         this.state = {
-            value: ''
+            value: '',
+            formColor: '#4c924c',
+            type: 'inc',
         }
     }
 
@@ -27,7 +30,18 @@ class AddIncomeExpense extends Component {
         income: [],
         expenses: [],
         percentage: -1,
+    } 
+
+    setTypeVal = (e) => {
+        this.setState({typeVal: e.target.value})
     }
+
+    //  onChange(e){
+    //     const re = /^[0-9\b]+./;
+    //     if (e.target.value == '' || re.test(e.target.value)) {
+    //         this.setState({value: e.target.value})
+    //     }
+    // }
 
     static contextType = BuxinfluxContext;
 
@@ -87,6 +101,19 @@ class AddIncomeExpense extends Component {
                 }) 
         }
     }
+   
+    handleTypeChange=(e)=>{
+        const formColor1 = "#4c924c";
+        const formColor2 = "#ff5033"
+
+        this.setState({type: e.target.value})
+
+        if(this.state.type=== 'exp') {
+            this.setState({formColor: formColor1})
+        }if(this.state.type === 'inc') {
+            this.setState({formColor: formColor2})
+        }
+    }
 
     render() {
         return (
@@ -95,8 +122,10 @@ class AddIncomeExpense extends Component {
                 <form
                     className='AddBuxinflux__form'
                     onSubmit={this.handleSubmit}
+                    // onChange={this.handleTypeChange}
+                    style = {{borderColor: this.state.formColor}}
                 >
-                    <select name='type' className='type'>
+                    <select id = 'type' name='type' className='type' style = {{borderColor: this.state.formColor}} onChange={this.handleTypeChange} value={this.state.type} >
                         <option value='inc'>+</option>
                         <option value='exp'>-</option>
                     </select>
@@ -106,17 +135,25 @@ class AddIncomeExpense extends Component {
                         name='description'
                         id='description'
                         placeholder=' Add description'
+                        style = {{borderColor: this.state.formColor}}
                         required
                     />
                     <input
-                        type='value'
-                        name='value'
-                        id='value'
+                        type="number"
+                        min="0.00"
+                        step="0.001"
+                        // max="1.00"
+                        name="value"
+                        id="value"
+                        style = {{borderColor: this.state.formColor}}
+                        // onChange = {this.onChange}
                         placeholder=' Value'
+                       
                         required
                     />
-                        <button type='submit' className="btnSub">
-                        <Icon icon={checkCircle} className="checkIcon" /> 
+                        <button type='submit' className="btnSub" >
+                        <Icon icon={checkCircle} className="checkIcon" style = {{color: this.state.formColor}}/> 
+
                         </button> 
                     
                 </form>

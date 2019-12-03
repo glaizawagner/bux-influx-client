@@ -12,12 +12,11 @@ export default class ExpenseList extends Component {
       static contextType = BuxinfluxContext;
       
     componentDidMount() {
-        // this.context.clearError();
+        this.context.clearError();
     }
 
     renderExpenses() {
         const { created, expenses } = this.context;
-        // console.log(`Income list : ${this.context.expenses}`);
         return(
             <section className='ExpenseList'>
                 <span className="expName">Expenses</span>

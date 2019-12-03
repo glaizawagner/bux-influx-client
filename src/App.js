@@ -181,12 +181,10 @@ class App extends Component {
     }
 
     handleTotalPercentage = () => {
-        // console.log(this.state.currentUser)
         let tp,checknum;
         let hi = this.handleTotalIncome();
         let he = this.handleTotalExpenses();
         checknum = Math.abs(he)
-        // console.log(`he in total per: ${checknum}`)
         if(hi > checknum) {
                let tp = this.state.expenses.reduce((prevBal, curItem) => {
                 if((curItem.percentage > 0) && (helpers.formatDate(this.state.created)===helpers.formatDate(curItem.date_created))) {
@@ -195,7 +193,6 @@ class App extends Component {
                     return prevBal;
                 }
             }, 0);
-            // console.log(`total percentage: ${tp}`)
             return tp;  
         }if(checknum > hi) {
             tp = 0;
@@ -249,12 +246,6 @@ class App extends Component {
             setUserName: this.setUserName
             
         };
-
-        // console.log(`app username: ${this.state.userName}`)
-        // console.log(`app setUserName: ${this.setUserName}`)
-
-        // console.log(`For current user: ${this.state.currentUser}`)
-        // console.log(`For current user: ${this.user_id}`)
 
         return (
         <BuxinfluxContext.Provider value = {contextValue}>

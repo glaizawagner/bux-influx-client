@@ -4,6 +4,7 @@ h5 {
     padding: 2rem 1rem;
     font-size: 2rem;
     font-weight: 900;
+    margin-top: 10rem;
 }
 
 p {
@@ -12,3 +13,45 @@ p {
     text-justify: inter-word;
     padding: 3rem 3rem; 
 }
+
+
+  @media only screen and (min-width: 37.5em) and (max-width: 56.25em) {
+  
+    h5 {
+    
+    font-size: 3rem;
+    font-weight: 900;
+    margin-top: 12rem;
+    }
+
+    p {
+        font-size: 2.5rem;
+    }
+
+  }
+
+  @media only screen and (min-width: 56.25em) and (max-width: 75em) {
+    h5 {
+    
+    font-size: 3rem;
+    font-weight: 900;
+    margin-top: 12rem;
+    }
+
+    p {
+        font-size: 2.5rem;
+    }
+  }
+
+  @media only screen and (min-width: 75em) and (max-width: 105em) {
+    h5 {
+    
+    font-size: 3rem;
+    font-weight: 900;
+    margin-top: 12rem;
+    }
+
+    p {
+        font-size: 2.5rem;
+    }
+  }

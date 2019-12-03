@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import TokenService from '../../services/token-service'
-import AuthApiService from '../../services/auth-api-service'
+import TokenService from '../../services/token-service';
+import AuthApiService from '../../services/auth-api-service';
 import './LoginForm.css';
 
 export default class LoginForm extends Component {
@@ -55,9 +55,6 @@ export default class LoginForm extends Component {
           user_name.value = ''
           password.value = ''
 
-         
-         
-
           TokenService.saveAuthToken(res.authToken)
 
           this.props.onLoginSuccess(res.user_id)
@@ -70,32 +67,33 @@ export default class LoginForm extends Component {
 
   render() {
     const { error } = this.state
-    const { username } = this.context
-    console.log(username)
+    // const { username } = this.context
+    // console.log(username)
     return (
-        <section className="FormLogin">
-          <h1> bux influx</h1>
-          <form
-            className='LoginForm'
-            onSubmit={this.handleSubmitJwtAuth}
-          >
-            <div role='alert'>
-              {error && <p className='red'>{error}</p>}
-            </div>
-            <div className='user_name'>
-              <label htmlFor='LoginForm__user_name'>User name</label>
-              <input name='user_name' value = {username} id='LoginForm__user_name' placeholder=" Username" required/>
-            </div>
-            <div className='password'>
-              <label htmlFor='LoginForm__password'>Password</label>
-              <input name='password' type='password' id='LoginForm__password' placeholder=" Password" />
-            </div>
-            <div className="btn-sub-sign">
-              <button type='submit' className="btn login"> Login </button>
-              <Link to='/register'><button className="btn SignUp">Sign Up</button></Link>
-            </div>
-          </form>
-        </section>
+          <section className="FormLogin">
+            <h1> bux influx Login</h1>
+            <form
+              className='LoginForm'
+              onSubmit={this.handleSubmitJwtAuth}
+            >
+              <div role='alert'>
+                {error && <p className='red'>{error}</p>}
+              </div>
+              <div className='user_name'>
+                <label htmlFor='LoginForm__user_name'>User name</label>
+                <input name='user_name'  id='LoginForm__user_name' placeholder="test" required/>
+              </div>
+              <div className='password'>
+                <label htmlFor='LoginForm__password'>Password</label>
+                <input name='password' type='password'  id='LoginForm__password' placeholder="password" />
+              </div>
+              <div>
+                <button type='submit' className="btn-logcel"> Submit </button>
+                <Link to='/'><button  className="btn-logcel"> Cancel </button></Link>
+              </div>
+              
+            </form>
+          </section>
     )
   }
 }

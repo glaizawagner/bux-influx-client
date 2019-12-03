@@ -1,17 +1,23 @@
 .Header {
     display: -webkit-flex;
     display: flex;
-    align-items: normal;
+    align-self: center;
     justify-content: flex-end;
     text-decoration: none;
-    background-color: var(--color-primary-medium);
+    background-color: darkgray;
     padding: 0 2rem;
-    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
 }
+
 img {
     height: 6rem;
     width: 6rem;
 }
+
 .Header:hover{
     cursor: pointer;
 }
@@ -32,12 +38,12 @@ img {
   }
 
 .Header__not-logged-in a:last-child {
-    background: rgb(255, 121, 121);
-    color: white;
+    background: var(--color-primary-dark);
+    color: black;
     padding: 5px 1rem;
     border-radius: 1rem;
     margin-left: .9rem;
-  
+    font-weight: 700;
 }
 
 .Header a {
@@ -56,13 +62,29 @@ img {
     font-weight: 400;
 }
 
-.log-reg:hover {
+.log-reg a:hover {
     cursor: pointer;
+    color: var(--font-expense);
 }
 
 .log-out {
-    margin-top: 1rem;
+    /* margin-top: -8px; */
+    text-decoration: underline;
     align-self: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 900;
+    color: white;
+}
+
+.log-out a:visited:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.log-out a:link:active, a:visited:active {
+    text-decoration: underline;
+}
+
+.welcome {
+    float: left;
 }

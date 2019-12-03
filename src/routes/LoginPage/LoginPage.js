@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import BuxinfluxContext from '../../contexts/BuxinfluxContext';
-
+// import Header from '../../components/Header/Header'
 
 export default class LoginPage extends Component {
   static defaultProps = {
@@ -16,9 +16,9 @@ export default class LoginPage extends Component {
   handleLoginSuccess = (user) => {
     // console.log(`log in page: ${user}`)
     const { location, history } = this.props
-    console.log(`login username: ${user.uname}`)
+    // console.log(`login username: ${user.uname}`)
     // console.log(`login userid: ${user.uid}`)
-    console.log(`login user: ${user}`)
+    // console.log(`login user: ${user}`)
     const destination = (location.state || {}).from || `/users/${user}`
     this.context.setLoggedInUser(user)
 
@@ -28,7 +28,6 @@ export default class LoginPage extends Component {
   render() {
     return (
       <div className='LoginPage'>
-        <h2>Login</h2>
         <LoginForm
           onLoginSuccess={this.handleLoginSuccess}
         />

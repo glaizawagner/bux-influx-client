@@ -8,6 +8,7 @@ import ExpenseList from '../../components/ExpenseList/ExpenseList';
 class UserPage extends React.Component {
     state = {
         user: this.context.currentUser,
+        username: this.context.username,
         income: [],
         expenses: []
 
@@ -24,6 +25,8 @@ class UserPage extends React.Component {
             this.context.clearExpenses()
         }
 
+        // console.log(this.context.username)
+        // console.log(this.context.setUserName(this.context.currentUser))
         BuxinfluxApiService.getUserAllIncome(this.context.currentUser)
         .then((income) => {
             this.context.setIncome(income)
@@ -39,17 +42,18 @@ class UserPage extends React.Component {
     }
 
     render() {
-        const user = this.context.currentUser;
-        
+        // const user = this.context.currentUser;
+        // console.log(user.user_name);
+
+        // console.log(user.user_name)
         return (
             <>
-            <h2> Welcome back {user ? ',' + user : ''} </h2>
-            <section>
-                <h2> Bux Influx</h2>
-                <BuxInfluxPage /> 
-                <IncomeList />
-                <ExpenseList />
-            </section> 
+                {/* <h2> Welcome back {user ? ', ' + user.user_name : ''} </h2> */}
+                <section className="bux-main">
+                    <BuxInfluxPage /> 
+                    <IncomeList />
+                    <ExpenseList />
+                </section> 
             </>
         )
     }

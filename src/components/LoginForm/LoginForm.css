@@ -1,9 +1,10 @@
 .FormLogin {
+    margin-top: 12rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    background-color: var(--color-primary-dark);
+    background-color: grayscale;
     width: 100%;
     padding: 3rem;
 }
@@ -12,13 +13,6 @@ h1 {
     text-transform: uppercase;
     margin-bottom: 2rem;
 }
-.SignUp {
-    margin-top: 15rem;
-    margin-bottom: 3.5rem;
-    align-items: center;
-    justify-content: center;
-}
-
 
 input {
     border: 1px solid #ddd;
@@ -34,19 +28,17 @@ input {
     margin-bottom: 4rem;
 }
 
-.btn{
-  border: 1px solid #aaa;
-  background-color: #eee;
-  font-size: 2rem;
-  border-radius: 4px;
-  padding: 8px 2rem;
-  font-weight: 900;
-  width: 60%;
-  cursor: pointer;
-  box-shadow: 5px 1rem #888888;
-}
-
-.btn-sub-sign {
-    text-align: center;
+.btn-logcel {
+    display: row;
+    justify-content: space-around;
+    border: 1px solid #aaa;
+    background-color: #eee;
+    font-size: 2rem;
+    border-radius: 4px;
+    padding: .5rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 5px 5px #888888;
+    margin: 1.5rem; 
 
 }

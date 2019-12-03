@@ -10,35 +10,38 @@ export default class Header extends Component {
   static contextType = BuxinfluxContext;
 
   handleLogoutClick = () => {
-    console.log('successfully logout')
+    
     this.context.logoutUser();
   }
 
   renderLogoutLink() {
+    // const user = this.context.currentUser;
+    
     return (
       <>
-        {/* <Link to='/users/:uid'>
-          Logo
-        </Link> */}
-        <Link onClick={this.handleLogoutClick} to='/'> <h3 className="log-out">Log-out</h3> </Link>
-    </>
+        {/* <span className="welcome"> Welcome back {user ? ', ' + user.user_name : ''} </span> */}
+        <h3 className="log-out"><Link onClick={this.handleLogoutClick} to='/'> Log-out </Link></h3> 
+     </>
     )
   }
 
   renderLoginLink() {
     return (
       <div className='Header__not-logged-in'>
-          <Link to='/login'><span className="log-reg">Login</span></Link>
-          <Link to='/register'><span className="log-reg">Register</span></Link>
+          <span className="log-reg"><Link to='/login'>Login</Link></span>
+          <span className="log-reg"><Link to='/register'>Register</Link></span>
       </div>
     )
   }
 
   render() {
-    // console.log(`Current user in Header: ${this.context.currentUser}`);
+    
+
     return <>
       <nav className="Header">
-              <h4 id="navlogo"><Link to='/'> <img src={biLogo} alt='Buxinflux Logo'/> </Link></h4>
+              {/* <h4 id="navlogo"><Link to='/'> <img src={biLogo} alt='Buxinflux Logo'/> </Link></h4> */}
+              <h4 id="navlogo"><img src={biLogo} alt='Buxinflux Logo'/></h4>
+              {/* <span> Welcome back {user ? ', ' + user.user_name : ''} </span> */}
             {this.context.currentUser
               ? this.renderLogoutLink()
               : this.renderLoginLink()}

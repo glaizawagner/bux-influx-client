@@ -13,32 +13,33 @@ export default class IncomeList extends Component {
     static contextType = BuxinfluxContext;
 
     componentDidMount() {
-        // this.context.clearError();
+        this.context.clearError();
     }
 
     renderIncome(){
         const { income, created } = this.context;
-
-        return (
+        // console.log(`income length in list: ${income.length}`);
+        return (  
+            <>
                 <section className='IncomeList'>
-               <span className="incName">Income</span>
-               <ul className="IncomeList__list" aria-live='polite'>
-                    {income.map((income,i) => 
-                        (helpers.formatDate(income.date_created) === helpers.formatDate(created)) 
-                        ? <IncomeItem 
-                            key={i} 
-                            iid={i} 
-                            user_id ={this.context.currentUser} 
-                            {...income} 
-                            // toggleEditing={() => this.toggleIncomeEditing(i)}
-                            // onChange={this.handleIncomeUpdate}
-                            /> 
-                        : ''
-                    )}
-                   
-           </ul>
-        </section>   
-        );
+                    <span className="incName">Income</span>
+                    <ul className="IncomeList__list" aria-live='polite'>
+                            {income.map((income,i) => 
+                                (helpers.formatDate(income.date_created) === helpers.formatDate(created)) 
+                                ? <IncomeItem 
+                                    key={i} 
+                                    iid={i} 
+                                    user_id ={this.context.currentUser} 
+                                    {...income} 
+                                    /> 
+                                : ''
+                            )}
+                        
+                    </ul>
+                </section>   
+            </>
+            );
+
     }
 
     render() {

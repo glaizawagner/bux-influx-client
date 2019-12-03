@@ -20,14 +20,14 @@ export default class Balance extends Component {
                     {helpers.formatBalance(this.context.onChangeBalance())} 
                 </label>
                 <div id="BalanceIncome">
-                    Income
-                    <span className="totalInc">
+                    <span>Income</span>
+                    <span>
                         {helpers.formatNumber(this.context.onChangeIncome(),'inc')}
                     </span>
                 </div>
 
                 <div id="BalanceExpense">
-                    Expenses
+                    <span>Expenses</span>
                     <span className="totalExp">{helpers.formatNumber(this.context.onChangeExpenses(),'exp')}
                     <span className="perc" id="perc">{helpers.formatPercentage(this.context.onChangePerc())}</span></span>
                 </div>

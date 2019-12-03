@@ -1,8 +1,17 @@
-.ExpenseItem {
+.ExpenseItem__row {
     display: flex;
-    justify-content: space-evenly;
-    margin: 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: flext-start;
+    /* margin: 0 auto; */
     padding: 5px 0;
+    font-size: 1.5rem;
+}
+
+.ExpenseItem__btn {
+    font-size: 1.5rem;
+    background: transparent;
+    border: 0;
 }
 
 .timesIcon {
@@ -13,4 +22,10 @@
 
 .items {
     margin: 0 1rem;
-}
+} 
+
+.exp-extra {
+    color: #ff5033;
+} 
+
+
