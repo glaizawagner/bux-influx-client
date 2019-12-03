@@ -51,6 +51,7 @@ class AddIncomeExpense extends Component {
         const { type, description, value } = e.target;
         let perc ;
 
+        console.log(`add inc/exp ${this.context.created}`);
         const newInc = {
             date_created: this.context.created,
             type: type.value,
@@ -140,8 +141,8 @@ class AddIncomeExpense extends Component {
                     />
                     <input
                         type="number"
-                        min="0.00"
-                        step="0.001"
+                        min="0.01"
+                        step="0.000001"
                         // max="1.00"
                         name="value"
                         id="value"

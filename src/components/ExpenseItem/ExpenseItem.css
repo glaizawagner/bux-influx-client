@@ -14,6 +14,13 @@
     border: 0;
 }
 
+.ExpenseItem__btn:hover {
+   font-weight: 900;
+    color: blue;
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
 .timesIcon {
     font-size: 2rem;
     border: transparent;
