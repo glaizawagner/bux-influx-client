@@ -6,8 +6,8 @@ import BuxinfluxApiService from '../../services/buxinflux-api-service';
 // import TokenService from '../../services/token-service';
 // import config from '../../config';
 import './AddIncomeExpenses.css';
-import { Icon } from '@iconify/react';
-import checkCircle from '@iconify/icons-fa-regular/check-circle';
+// import { Icon } from '@iconify/react';
+// import checkCircle from '@iconify/icons-fa-regular/check-circle';
 // function styleFn(provided, state) {
 //   return { ...provided, color: state.isFocused ? 'blue' : 'red' };
 // }
@@ -30,7 +30,7 @@ class AddIncomeExpense extends Component {
         income: [],
         expenses: [],
         percentage: -1,
-    } 
+    }
 
     setTypeVal = (e) => {
         this.setState({typeVal: e.target.value})
@@ -58,7 +58,7 @@ class AddIncomeExpense extends Component {
             description: description.value,
             value: value.value
         }
-        
+
         perc = ((parseFloat(value.value)/parseFloat(this.context.onChangeIncome()))*100)
 
         const newExp = {
@@ -68,7 +68,7 @@ class AddIncomeExpense extends Component {
             value: -Math.abs(value.value),
             percentage: perc
         }
-     
+
 
         if(type.value === 'inc') {
              BuxinfluxApiService.addNewIncome(newInc)
@@ -82,16 +82,16 @@ class AddIncomeExpense extends Component {
                 })
                 .catch(error => {
                     console.error(error)
-                }) 
-             
-        } 
+                })
+
+        }
 
         if(type.value === 'exp') {
             BuxinfluxApiService.addNewExpenses(newExp)
                 .then(res => {
                     this.context.addExpenses(res)
                     this.props.history.push(`/user/${res.user_id}`)
-                   
+
                 })
                 .then( () => {
                     description.value = ''
@@ -99,10 +99,10 @@ class AddIncomeExpense extends Component {
                 })
                 .catch(error => {
                     console.error(error)
-                }) 
+                })
         }
     }
-   
+
     handleTypeChange=(e)=>{
         const formColor1 = "#4c924c";
         const formColor2 = "#ff5033"
@@ -118,7 +118,7 @@ class AddIncomeExpense extends Component {
 
     render() {
         return (
-            
+
             <section className='AddBuxInflux'>
                 <form
                     className='AddBuxinflux__form'
@@ -126,16 +126,16 @@ class AddIncomeExpense extends Component {
                     // onChange={this.handleTypeChange}
                     style = {{borderColor: this.state.formColor}}
                 >
-                    <select id = 'type' name='type' className='type' style = {{borderColor: this.state.formColor}} onChange={this.handleTypeChange} value={this.state.type} >
-                        <option value='inc'>+</option>
-                        <option value='exp'>-</option>
+                    <select id = 'type' name='type' className='type' style = {{borderColor: this.state.formColor, color: this.state.formColor}} onChange={this.handleTypeChange} value={this.state.type} >
+                        <option value='inc'>Add Income</option>
+                        <option value='exp'>Add Expense</option>
                     </select>
-        
+
                     <input
                         type='description'
                         name='description'
                         id='description'
-                        placeholder=' Add description'
+                        placeholder=' Salary'
                         style = {{borderColor: this.state.formColor}}
                         required
                     />
@@ -148,15 +148,15 @@ class AddIncomeExpense extends Component {
                         id="value"
                         style = {{borderColor: this.state.formColor}}
                         // onChange = {this.onChange}
-                        placeholder=' Value'
-                       
+                        placeholder=' 1000.45'
+
                         required
                     />
-                        <button type='submit' className="btnSub" >
-                        <Icon icon={checkCircle} className="checkIcon" style = {{color: this.state.formColor}}/> 
+                        <button type='submit' className="btnSub" style = {{color: this.state.formColor}} >
+                        {/* <Icon icon={checkCircle} className="checkIcon" style = {{color: this.state.formColor}}/>  */}
+                        Save
+                        </button>
 
-                        </button> 
-                    
                 </form>
             </section>
         )
