@@ -48,27 +48,83 @@
   font-size: 1rem;
 }
 
+@media only screen and (min-width: 20em) and (max-width:37.5em) {
+    #description{
+        flex: 1 0;
+        margin-right: 5px;
+        margin-left: 5px;
+        width: 10rem;
+    }
+
+    #value{
+        flex: 1 0;
+        margin-right: 5px;
+        margin-left: 0;
+        width: 10rem;
+    }
+
+    .type { 
+        width: 8rem;
+    }
+}
 
 @media only screen and (min-width: 37.5em) and (max-width: 56.25em) {
-    #description, #value{
+    #description{
         flex: 1 0;
-        margin-right: 1rem;
-        margin-left: 1rem;
+        margin-right: 5px;
+        margin-left: 5px;
+        width: 10rem;
+    }
+
+    #value{
+        flex: 1 0;
+        margin-right: 5px;
+        margin-left: 0;
+        width: 10rem;
+    }
+
+    .AddBuxinflux__form {
+        margin: 3% 10%;
     }
 }
 
 @media only screen and (min-width: 56.25em) and (max-width: 75em) {
-     #description, #value{
+    #description{
         flex: 1 0;
-        margin-right: 1rem;
-        margin-left: 1rem;
+        margin-right: 5px;
+        margin-left: 5px;
+        width: 10rem;
+    }
+
+    #value{
+        flex: 1 0;
+        margin-right: 5px;
+        margin-left: 0;
+        width: 10rem;
+    }
+
+     .AddBuxinflux__form {
+        margin: 3% 10%;
     }
 }
 
 @media only screen and (min-width: 75em) and (max-width: 105em) {
-     #description, #value{
+    #description{
         flex: 1 0;
-        margin-right: 1rem;
-        margin-left: 1rem;
+        margin-right: 5px;
+        margin-left: 5px;
+        width: 10rem;
     }
+
+    #value{
+        flex: 1 0;
+        margin-right: 5px;
+        margin-left: 0;
+        width: 10rem;
+    }
+
+    .AddBuxinflux__form {
+        margin: 2% 20%;
+    }
+    
 }

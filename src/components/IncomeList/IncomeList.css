@@ -20,3 +20,39 @@
     /* border-top: 2px solid black;
     border-bottom: 2px solid black; */
 }
+
+@media only screen and (min-width: 37.5em) and (max-width: 56.25em) {
+    .incName {
+        margin-top: 3rem;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .IncomeList__list{
+        margin: 1% 10%;
+    }
+}
+
+@media only screen and (min-width: 56.25em) and (max-width: 75em) {
+    .incName {
+        margin-top: 3rem;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .IncomeList__list {
+        margin: 1% 10%;
+    }
+}
+
+@media only screen and (min-width: 75em) and (max-width: 105em) {
+    .incName {
+        margin-top: 3rem;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .IncomeList__list {
+        margin: 1% 20%;
+    }
+}

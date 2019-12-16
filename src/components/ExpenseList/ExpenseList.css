@@ -21,3 +21,39 @@
     /* border-top: 2px solid black;
     border-bottom: 2px solid black; */
 }
+
+@media only screen and (min-width: 37.5em) and (max-width: 56.25em) {
+    .expName {
+        margin-top: 3rem;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .ExpenseList__list {
+        margin: 0 10%;
+    }
+}
+
+@media only screen and (min-width: 56.25em) and (max-width: 75em) {
+    .expName {
+        margin-top: 3rem;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .ExpenseList__list {
+        margin: 0 10%;
+    }
+}
+
+@media only screen and (min-width: 75em) and (max-width: 105em) {
+    .expName {
+        margin-top: 3rem;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .ExpenseList__list {
+        margin: 0 20%;
+    }
+}

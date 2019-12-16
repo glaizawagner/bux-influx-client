@@ -35,3 +35,20 @@
     font-size: 1.5rem;
 }
 
+@media only screen and (min-width: 37.5em) and (max-width: 56.25em) {
+    #BalanceIncome, #BalanceExpense {
+        margin: 1% 20%;
+    }
+}
+
+@media only screen and (min-width: 56.25em) and (max-width: 75em) {
+    #BalanceIncome, #BalanceExpense{
+        margin: 1% 20%;
+    }
+}
+
+@media only screen and (min-width: 75em) and (max-width: 105em) {
+    #BalanceIncome, #BalanceExpense {
+        margin: 1% 30%;
+    }
+}

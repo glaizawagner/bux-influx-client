@@ -20,7 +20,7 @@ Note: em is the one that works well in media queries
     --font-color:rgba(5, 4, 1, 1));
     --font-expense:rgba(231, 139, 139, 1);
     --font-income:rgba(168, 246, 219, 1);
-    }
+  }
   
     
   /* body {
@@ -66,26 +66,34 @@ Note: em is the one that works well in media queries
   }
   
   .red {
-    color: var(--font-expense);
+    color: red;
+    font-size: 1.3rem;
+    font-weight: 900;
   }
 
+  @media only screen and (min-width: 20em) and (max-width:37.5em) {
+    body {
+      padding: 5% 10%;
+    }
+
+  }
 
   @media only screen and (min-width: 37.5em) and (max-width: 56.25em) {
     body {
-      padding: 0 15%;
+      padding: 0% 5%;
     }
 
   }
 
   @media only screen and (min-width: 56.25em) and (max-width: 75em) {
     body {
-      padding: 0 25%;
+      padding: 0 10%;
     }
   }
 
   @media only screen and (min-width: 75em) and (max-width: 105em) {
     body {
-      padding: 0 35%;
+      padding: 0 10%;
     }
   }
 
